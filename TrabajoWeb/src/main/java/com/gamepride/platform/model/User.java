@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="user")
@@ -21,28 +22,28 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotEmpty(message = "Debe ingresar el email del usuario.")
 	@Column(name="email",nullable=false,length=50)
 	private String email;
-	
+
+	@NotEmpty(message = "Debe ingresar la contraseña del usuario.")
 	@Column(name="password",nullable=false)
 	private String password;
 
 	@OneToOne
-	@JoinColumn(name="id_motor",nullable=false)
+	@JoinColumn(name="id_person",nullable=false)
 	private Person person;
-	
-	public User(int id, String email, String password, Person person) {
-		super();
-		this.id = id;
+		
+	public User() {
+	}
+
+	public User(@NotEmpty String email,
+			@NotEmpty String password, Person person) {
 		this.email = email;
 		this.password = password;
 		this.person = person;
 	}
 
-	public User() {
-		super();
-	}
-	
 	public int getId() {
 		return id;
 	}

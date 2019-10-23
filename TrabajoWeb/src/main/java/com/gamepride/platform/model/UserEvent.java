@@ -21,8 +21,8 @@ public class UserEvent implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="inscriptionAt",nullable=false,length=50)
-	private String inscriptionAt;
+	@Column(name="inscriptedAt",nullable=false,length=50)
+	private String inscriptedAt;
 
 	@ManyToOne
 	@JoinColumn(name="id_user",nullable=false)
@@ -32,16 +32,13 @@ public class UserEvent implements Serializable {
 	@JoinColumn(name="id_event",nullable=false)
 	private Event event;
 	
-	public UserEvent(int id, String inscriptionAt, User user, Event event) {
-		super();
-		this.id = id;
-		this.inscriptionAt = inscriptionAt;
-		this.user = user;
-		this.event = event;
+	public UserEvent() {
 	}
 
-	public UserEvent() {
-		super();
+	public UserEvent(String inscriptedAt, User user, Event event) {
+		this.inscriptedAt = inscriptedAt;
+		this.user = user;
+		this.event = event;
 	}
 
 	public int getId() {
@@ -52,12 +49,12 @@ public class UserEvent implements Serializable {
 		this.id = id;
 	}
 
-	public String getInscriptionAt() {
-		return inscriptionAt;
+	public String getInscriptedAt() {
+		return inscriptedAt;
 	}
 
-	public void setInscriptionAt(String inscriptionAt) {
-		this.inscriptionAt = inscriptionAt;
+	public void setInscriptedAt(String inscriptedAt) {
+		this.inscriptedAt = inscriptedAt;
 	}
 
 	public User getUser() {

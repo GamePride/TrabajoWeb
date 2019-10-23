@@ -42,8 +42,5 @@ public class Payment implements Serializable {
 	}
 	public void setTypePay(char typePay) {
 		this.typePay = typePay;
-	}
-	
-	
-	
+	}	
 }

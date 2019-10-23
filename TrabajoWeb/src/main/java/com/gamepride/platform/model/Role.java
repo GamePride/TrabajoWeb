@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="role")
@@ -19,6 +20,7 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	@NotEmpty(message = "Debe ingresar el rol del usuario.")
 	@Column(name="name",nullable=false,length=40)
 	private String name;
 
@@ -36,6 +38,5 @@ public class Role implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
+	}	
 }

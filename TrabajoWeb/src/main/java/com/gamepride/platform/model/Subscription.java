@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="subscription")
@@ -17,12 +18,21 @@ public class Subscription implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="ubscription_type",nullable=false,length=20)
-	private String subscriptionType ;
+
+	@NotEmpty(message = "Debe elegir el tipo de suscripción.")
+	@Column(name="type",nullable=false,length=20)
+	private String type;
 	
 	@Column(name="frequency",nullable=false,length=20)
 	private String frequency;
+
+	public Subscription(@NotEmpty(message = "Debe elegir el tipo de suscripción.") String type, String frequency) {
+		this.type = type;
+		this.frequency = frequency;
+	}
+
+	public Subscription() {
+	}
 
 	public int getId() {
 		return id;
@@ -32,12 +42,12 @@ public class Subscription implements Serializable{
 		this.id = id;
 	}
 
-	public String getSubscriptionType() {
-		return subscriptionType;
+	public String getType() {
+		return type;
 	}
 
-	public void setSubscriptionType(String subscriptionType) {
-		this.subscriptionType = subscriptionType;
+	public void setType(String Type) {
+		this.type = Type;
 	}
 
 	public String getFrequency() {
@@ -47,5 +57,4 @@ public class Subscription implements Serializable{
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
-
 }

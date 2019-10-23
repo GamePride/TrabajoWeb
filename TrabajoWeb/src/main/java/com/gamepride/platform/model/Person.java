@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "person")
@@ -19,15 +21,27 @@ public class Person implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotEmpty(message = "Debe ingresar el nombre.")
 	@Column(name="name",nullable=false,length=65)
 	private String name;
 	
+	@Size(min = 9,max = 9,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false,length=9)
 	private int phone;
 	
 	@Column(name="account_number",nullable=false,length=30)
 	private int accountNumber;
 	
+	public Person() {
+	}
+	
+	public Person(@NotEmpty String name,
+			@Size int phone, int accountNumber) {
+		this.name = name;
+		this.phone = phone;
+		this.accountNumber = accountNumber;
+	}
+
 	public int getId() {
 		return id;
 	}
