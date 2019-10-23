@@ -1,7 +1,7 @@
 package com.gamepride.platform.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="event")
@@ -21,14 +23,17 @@ public class Event implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotEmpty(message = "Debe ingresar un nombre de Evento.")
 	@Column(name="name",nullable=false,length=40)
 	private String name;
 	
+	@NotEmpty(message = "Debe ingresar el nombre de un juego.")
 	@Column(name="game",nullable=false,length=50)
 	private String game;
 	
+	@NotNull(message = "Debe ingresar una fecha.")
 	@Column(name="started_at",nullable=false)
-	private Calendar startedAt;
+	private Date startedAt;
 	
 	@Column(name="vacancy",nullable=false)
 	private int vacancy;
@@ -43,10 +48,10 @@ public class Event implements Serializable{
 	@JoinColumn(name="id_lancenter",nullable=false)
 	private LanCenter lancenter;
 	
-	public Event(int id, String name, String game, Calendar startedAt, int vacancy, int costInscription, String reward,
-			LanCenter lancenter) {
-		super();
-		this.id = id;
+	public Event(@NotEmpty String name,
+			@NotEmpty String game,
+			@NotNull Date startedAt, int vacancy, int costInscription,
+			String reward, LanCenter lancenter) {
 		this.name = name;
 		this.game = game;
 		this.startedAt = startedAt;
@@ -55,11 +60,7 @@ public class Event implements Serializable{
 		this.reward = reward;
 		this.lancenter = lancenter;
 	}
-
-	public Event() {
-		super();
-	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -84,11 +85,11 @@ public class Event implements Serializable{
 		this.game = game;
 	}
 
-	public Calendar getStartedAt() {
+	public Date getStartedAt() {
 		return startedAt;
 	}
 
-	public void setStartedAt(Calendar startedAt) {
+	public void setStartedAt(Date startedAt) {
 		this.startedAt = startedAt;
 	}
 

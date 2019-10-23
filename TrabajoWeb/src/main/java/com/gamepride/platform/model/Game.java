@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 	@Entity
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private int id;
 		
+		@NotEmpty(message = "Debe ingresar el nombre del juego.")
 		@Column(name="name",nullable=false,length=40)
 		private String name;
 

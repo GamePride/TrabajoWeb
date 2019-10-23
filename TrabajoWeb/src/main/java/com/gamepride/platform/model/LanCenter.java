@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="lancenter")
@@ -21,15 +23,19 @@ public class LanCenter implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotEmpty(message = "Debe ingresar el nombre del LanCenter.")
 	@Column(name="name",nullable=false,length=50)
 	private String name;
 	
+	@Size(min = 7,max = 7,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false)
 	private int phone;
 	
+	@NotEmpty(message = "Debe ingresar la dirección del LanCenter.")
 	@Column(name="adress",nullable=false,length=60)
 	private String adress;
 	
+	@NotEmpty(message = "Debe ingresar el distrito del LanCenter.")
 	@Column(name="district",nullable=false,length=60)
 	private String district;
 
