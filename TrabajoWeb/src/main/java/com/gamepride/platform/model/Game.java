@@ -24,6 +24,10 @@ import javax.validation.constraints.NotEmpty;
 		@Column(name="name",nullable=false,length=40)
 		private String name;
 
+		public Game(@NotEmpty String name) {
+			this.name = name;
+		}
+
 		public int getId() {
 			return id;
 		}

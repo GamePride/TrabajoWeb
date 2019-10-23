@@ -42,19 +42,19 @@ public class LanCenter implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_person",nullable=false)
 	private Person person;
-	
-	public LanCenter(int id, String name, int phone, String adress, String district, Person person) {
-		super();
-		this.id = id;
+
+	public LanCenter() {
+	}
+
+	public LanCenter(@NotEmpty String name,
+			@Size int phone,
+			@NotEmpty String adress,
+			@NotEmpty String district, Person person) {
 		this.name = name;
 		this.phone = phone;
 		this.adress = adress;
 		this.district = district;
 		this.person = person;
-	}
-
-	public LanCenter() {
-		super();
 	}
 
 	public int getId() {
