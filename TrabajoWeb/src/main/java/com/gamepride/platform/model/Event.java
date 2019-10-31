@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,7 +27,7 @@ public class Event implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty(message = "Debe ingresar un nombre de Evento.")
+	@NotEmpty(message = "Debe ingresar un nombre de evento.")
 	@Column(name="name",nullable=false,length=40)
 	private String name;
 	
@@ -37,9 +38,11 @@ public class Event implements Serializable{
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Future(message = "El torneo no puede ser hoy, ingrese otra fecha.")
 	@Column(name="started_at",nullable=false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date startedAt;
 	
+	@NotNull(message = "Debe ingresar el número de vacantes.")
+	@Size(min=10,message="El mínimo de vacantes debe ser de 10 jugadores")
 	@Column(name="vacancy",nullable=false)
 	private int vacancy;
 	
