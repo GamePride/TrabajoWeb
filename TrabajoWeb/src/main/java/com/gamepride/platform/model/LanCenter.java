@@ -41,7 +41,7 @@ public class LanCenter implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="id_person",nullable=false)
-	private Person person;
+	private Person manager;
 
 	public LanCenter() {
 	}
@@ -49,12 +49,12 @@ public class LanCenter implements Serializable {
 	public LanCenter(@NotEmpty String name,
 			@Size int phone,
 			@NotEmpty String adress,
-			@NotEmpty String district, Person person) {
+			@NotEmpty String district, Person manager) {
 		this.name = name;
 		this.phone = phone;
 		this.adress = adress;
 		this.district = district;
-		this.person = person;
+		this.manager = manager;
 	}
 
 	public int getId() {
@@ -97,11 +97,11 @@ public class LanCenter implements Serializable {
 		this.district = district;
 	}
 
-	public Person getPerson() {
-		return person;
+	public Person getManager() {
+		return manager;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}	
+	public void setManager(Person manager) {
+		this.manager = manager;
+	}
 }

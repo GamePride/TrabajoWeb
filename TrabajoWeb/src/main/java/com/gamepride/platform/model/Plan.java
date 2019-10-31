@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -24,15 +26,19 @@ public class Plan implements Serializable {
 	@Column(name="type",nullable=false,length=20)
 	private String type;
 	
-	@Column(name="value",nullable=false)
-	private float value;
+	@DecimalMin("0.00")
+	@DecimalMax("30.00")
+	@Column(name="cost",nullable=false,columnDefinition = "Decimal(8,2)")
+	private float cost;
 	
-	public Plan(@NotEmpty(message = "Debe elegir el tipo de plan.") String type, float value) {
-		this.type = type;
-		this.value = value;
+	public Plan() {
 	}
 
-	public Plan() {
+	public Plan(int id, @NotEmpty String type,
+			@DecimalMin("0.00") @DecimalMax("30.00") float cost) {
+		this.id = id;
+		this.type = type;
+		this.cost = cost;
 	}
 
 	public int getId() {
@@ -51,11 +57,11 @@ public class Plan implements Serializable {
 		this.type = type;
 	}
 
-	public float getValue() {
-		return value;
+	public float getCost() {
+		return cost;
 	}
 
-	public void setValue(float value) {
-		this.value = value;
+	public void setCost(float cost) {
+		this.cost = cost;
 	}
 }

@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="event")
@@ -32,7 +35,9 @@ public class Event implements Serializable{
 	private String game;
 	
 	@NotNull(message = "Debe ingresar una fecha.")
+	@Future(message = "El torneo no puede ser hoy, ingrese otra fecha.")
 	@Column(name="started_at",nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startedAt;
 	
 	@Column(name="vacancy",nullable=false)
@@ -48,6 +53,9 @@ public class Event implements Serializable{
 	@JoinColumn(name="id_lancenter",nullable=false)
 	private LanCenter lancenter;
 	
+	public Event() {
+	}
+
 	public Event(@NotEmpty String name,
 			@NotEmpty String game,
 			@NotNull Date startedAt, int vacancy, int costInscription,

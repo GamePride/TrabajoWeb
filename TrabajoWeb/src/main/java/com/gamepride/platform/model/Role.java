@@ -24,6 +24,14 @@ public class Role implements Serializable {
 	@Column(name="name",nullable=false,length=40)
 	private String name;
 
+	public Role() {
+	}
+
+	public Role(int id, @NotEmpty String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}

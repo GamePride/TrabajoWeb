@@ -29,14 +29,18 @@ public class Person implements Serializable {
 	@Column(name="phone",nullable=false,length=9)
 	private int phone;
 	
+	@Size(min = 10,max = 30,message="Número de cuentas inválido.")
 	@Column(name="account_number",nullable=false,length=30)
 	private int accountNumber;
 	
 	public Person() {
 	}
 	
-	public Person(@NotEmpty String name,
-			@Size int phone, int accountNumber) {
+	public Person(int id, @NotEmpty String name,
+			@Size int phone,
+			@Size int accountNumber) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.accountNumber = accountNumber;
@@ -59,5 +63,11 @@ public class Person implements Serializable {
 	}
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 }

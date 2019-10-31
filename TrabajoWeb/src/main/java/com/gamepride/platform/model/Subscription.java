@@ -23,15 +23,16 @@ public class Subscription implements Serializable{
 	@Column(name="type",nullable=false,length=20)
 	private String type;
 	
+	@NotEmpty(message = "Debe ingresar una frecuencia.")
 	@Column(name="frequency",nullable=false,length=20)
 	private String frequency;
 
-	public Subscription(@NotEmpty(message = "Debe elegir el tipo de suscripción.") String type, String frequency) {
+	public Subscription() {
+	}
+	
+	public Subscription(@NotEmpty String type, @NotEmpty String frequency) {
 		this.type = type;
 		this.frequency = frequency;
-	}
-
-	public Subscription() {
 	}
 
 	public int getId() {
