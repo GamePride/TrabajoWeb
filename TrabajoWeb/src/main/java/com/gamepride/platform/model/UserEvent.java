@@ -10,9 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table (name="user_event")
+@Table (name="user_events")
 public class UserEvent implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,12 +25,15 @@ public class UserEvent implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull(message = "Debe ingresar una fecha.")
+	@Future(message = "La fecha de inscripción no puede ser hoy, ingrese otra fecha.")
 	@Column(name="inscriptedAt",nullable=false,length=50)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String inscriptedAt;
 
 	@ManyToOne
 	@JoinColumn(name="id_user",nullable=false)
-	private User user;
+	private Gamer user;
 	
 	@ManyToOne
 	@JoinColumn(name="id_event",nullable=false)
@@ -35,7 +42,7 @@ public class UserEvent implements Serializable {
 	public UserEvent() {
 	}
 
-	public UserEvent(String inscriptedAt, User user, Event event) {
+	public UserEvent(String inscriptedAt, Gamer user, Event event) {
 		this.inscriptedAt = inscriptedAt;
 		this.user = user;
 		this.event = event;
@@ -57,11 +64,11 @@ public class UserEvent implements Serializable {
 		this.inscriptedAt = inscriptedAt;
 	}
 
-	public User getUser() {
+	public Gamer getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Gamer user) {
 		this.user = user;
 	}
 

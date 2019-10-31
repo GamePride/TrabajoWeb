@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="role")
+@Table(name="roles")
 public class Role implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

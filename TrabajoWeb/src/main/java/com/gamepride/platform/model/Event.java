@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="event")
+@Table(name="events")
 public class Event implements Serializable{
 
 	private static final long serialVersionUID = 1L;

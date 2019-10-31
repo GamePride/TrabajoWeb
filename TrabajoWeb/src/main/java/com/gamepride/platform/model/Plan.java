@@ -13,7 +13,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="plan")
+@Table(name="plans")
 public class Plan implements Serializable {
 
 	private static final long serialVersionUID = 1L;

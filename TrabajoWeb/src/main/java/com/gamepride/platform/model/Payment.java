@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="payment")
+@Table(name="payments")
 public class Payment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,6 @@ public class Payment implements Serializable {
 	private int id;
 	
 	@NotNull(message = "Debe ingresar una fecha.")
-	@Future(message = "La fecha de pago no puede ser hoy, ingrese otra fecha.")
 	@Column(name="paid_at",nullable=false,length=50)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private  Date paidAt;

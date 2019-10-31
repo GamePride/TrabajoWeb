@@ -13,8 +13,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
-@Table(name="subscription_plan")
+@Table(name="subscription_plans")
 public class SubscriptionPlan implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,8 +26,8 @@ public class SubscriptionPlan implements Serializable {
 	private int id;
 	
 	@NotNull(message = "Debe ingresar una fecha.")
-	@Future(message = "La fecha de suscripción no puede ser hoy, ingrese otra fecha.")
 	@Column(name="subscripted_at",nullable=false,length=50)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String subscriptedAt;
 	
 	@ManyToOne

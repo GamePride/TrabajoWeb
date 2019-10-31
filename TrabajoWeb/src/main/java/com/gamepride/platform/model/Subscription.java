@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="subscription")
+@Table(name="subscriptions")
 public class Subscription implements Serializable{
 
 	private static final long serialVersionUID = 1L;

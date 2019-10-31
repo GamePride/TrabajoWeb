@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="user")
-public class User implements Serializable {
+@Table(name="gamers")
+public class Gamer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,10 +34,10 @@ public class User implements Serializable {
 	@JoinColumn(name="id_person",nullable=false)
 	private Person person;
 		
-	public User() {
+	public Gamer() {
 	}
 
-	public User(@NotEmpty String email,
+	public Gamer(@NotEmpty String email,
 			@NotEmpty String password, Person person) {
 		this.email = email;
 		this.password = password;
