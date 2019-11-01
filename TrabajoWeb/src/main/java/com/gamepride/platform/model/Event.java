@@ -56,9 +56,8 @@ public class Event implements Serializable{
 	@Column(name="reward",nullable=false,length=40)
 	private String reward;
 
-	@NotNull(message = "Debe ingresar una foto referencial del torneo.")
-	@Column(name="photo",nullable=false,length=200)
-	private String photo;
+	@Column(name = "published", nullable = false, length = 50)
+	private Boolean published;
 	
 	@NotNull(message = "Debe ingresar las bases del torneo.")
 	@Column(name="bases",nullable=false,length=255)
@@ -68,6 +67,10 @@ public class Event implements Serializable{
 	@JoinColumn(name="id_lancenter",nullable=false)
 	private LanCenter lancenter;
 	
+	@NotNull(message = "Debe ingresar una foto referencial del torneo.")
+	@Column(name="photo",nullable=false,length=200)
+	private String photo;
+	
 	public Event() {
 	}
 
@@ -75,7 +78,7 @@ public class Event implements Serializable{
 			@NotEmpty String game,
 			@NotNull @Future Date startedAt,
 			@NotNull @Size Integer vacancy,
-			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward,
+			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward, Boolean published,
 			@NotNull String photo,
 			@NotNull String bases, LanCenter lancenter) {
 		this.id = id;
@@ -85,6 +88,7 @@ public class Event implements Serializable{
 		this.vacancy = vacancy;
 		this.costInscription = costInscription;
 		this.reward = reward;
+		this.published = published;
 		this.photo = photo;
 		this.bases = bases;
 		this.lancenter = lancenter;
@@ -144,5 +148,37 @@ public class Event implements Serializable{
 
 	public void setReward(String reward) {
 		this.reward = reward;
+	}
+
+	public Boolean getPublished() {
+		return published;
+	}
+
+	public void setPublished(Boolean published) {
+		this.published = published;
+	}
+
+	public String getBases() {
+		return bases;
+	}
+
+	public void setBases(String bases) {
+		this.bases = bases;
+	}
+
+	public LanCenter getLancenter() {
+		return lancenter;
+	}
+
+	public void setLancenter(LanCenter lancenter) {
+		this.lancenter = lancenter;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }
