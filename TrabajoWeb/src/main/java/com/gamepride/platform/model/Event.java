@@ -61,7 +61,7 @@ public class Event implements Serializable{
 	private String photo;
 	
 	@NotNull(message = "Debe ingresar las bases del torneo.")
-	@Column(name="photo",nullable=false,length=255)
+	@Column(name="bases",nullable=false,length=255)
 	private String bases;
 	
 	@ManyToOne
