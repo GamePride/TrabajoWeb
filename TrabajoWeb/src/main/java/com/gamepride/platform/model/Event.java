@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -46,12 +48,22 @@ public class Event implements Serializable{
 	@Column(name="vacancy",nullable=false)
 	private int vacancy;
 	
-	@Column(name="cost_inscription",nullable=false)
-	private int costInscription;
+	@DecimalMin("0.00")
+	@DecimalMax("50.00")
+	@Column(name="cost_inscription",nullable=false,columnDefinition = "Decimal(3,2)")
+	private Double costInscription;
 	
 	@Column(name="reward",nullable=false,length=40)
 	private String reward;
 
+	@NotNull(message = "Debe ingresar una foto referencial del torneo.")
+	@Column(name="photo",nullable=false,length=255)
+	private String photo;
+	
+	@NotNull(message = "Debe ingresar las bases del torneo.")
+	@Column(name="photo",nullable=false,length=255)
+	private String bases;
+	
 	@ManyToOne
 	@JoinColumn(name="id_lancenter",nullable=false)
 	private LanCenter lancenter;
@@ -59,19 +71,25 @@ public class Event implements Serializable{
 	public Event() {
 	}
 
-	public Event(@NotEmpty String name,
+	public Event(int id, @NotEmpty String name,
 			@NotEmpty String game,
-			@NotNull Date startedAt, int vacancy, int costInscription,
-			String reward, LanCenter lancenter) {
+			@NotNull @Future Date startedAt,
+			@NotNull @Size int vacancy,
+			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward,
+			@NotNull String photo,
+			@NotNull String bases, LanCenter lancenter) {
+		this.id = id;
 		this.name = name;
 		this.game = game;
 		this.startedAt = startedAt;
 		this.vacancy = vacancy;
 		this.costInscription = costInscription;
 		this.reward = reward;
+		this.photo = photo;
+		this.bases = bases;
 		this.lancenter = lancenter;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -112,11 +130,11 @@ public class Event implements Serializable{
 		this.vacancy = vacancy;
 	}
 
-	public int getCostInscription() {
+	public Double getCostInscription() {
 		return costInscription;
 	}
 
-	public void setCostInscription(int costInscription) {
+	public void setCostInscription(Double costInscription) {
 		this.costInscription = costInscription;
 	}
 
