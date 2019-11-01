@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,6 +21,10 @@ public class GamerEvent implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Future(message = "La fecha de inscripción no puede ser hoy, ingrese otra fecha.")
 	@Column(name="inscriptedAt",nullable=false,length=50)
@@ -25,20 +32,29 @@ public class GamerEvent implements Serializable {
 	private String inscriptedAt;
 
 	@ManyToOne
-	@JoinColumn(name="id_gamer",nullable=false)
+	@JoinColumn(name="gamer",nullable=false)
 	private Gamer gamer;
 	
 	@ManyToOne
-	@JoinColumn(name="id_event",nullable=false)
+	@JoinColumn(name="event",nullable=false)
 	private Event event;
 	
 	public GamerEvent() {
 	}
 
-	public GamerEvent(String inscriptedAt, Gamer gamer, Event event) {
+	public GamerEvent(Integer id, String inscriptedAt, Gamer gamer, Event event) {
+		this.id=id;
 		this.inscriptedAt = inscriptedAt;
 		this.gamer = gamer;
 		this.event = event;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getInscriptedAt() {

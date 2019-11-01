@@ -27,7 +27,7 @@ public class Event implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NotEmpty(message = "Debe ingresar un nombre de evento.")
 	@Column(name="name",nullable=false,length=40)
@@ -46,7 +46,7 @@ public class Event implements Serializable{
 	@NotNull(message = "Debe ingresar el número de vacantes.")
 	@Size(min=10,message="El mínimo de vacantes debe ser de 10 jugadores")
 	@Column(name="vacancy",nullable=false)
-	private int vacancy;
+	private Integer vacancy;
 	
 	@DecimalMin("0.00")
 	@DecimalMax("50.00")
@@ -57,7 +57,7 @@ public class Event implements Serializable{
 	private String reward;
 
 	@NotNull(message = "Debe ingresar una foto referencial del torneo.")
-	@Column(name="photo",nullable=false,length=255)
+	@Column(name="photo",nullable=false,length=200)
 	private String photo;
 	
 	@NotNull(message = "Debe ingresar las bases del torneo.")
@@ -71,10 +71,10 @@ public class Event implements Serializable{
 	public Event() {
 	}
 
-	public Event(int id, @NotEmpty String name,
+	public Event(Integer id, @NotEmpty String name,
 			@NotEmpty String game,
 			@NotNull @Future Date startedAt,
-			@NotNull @Size int vacancy,
+			@NotNull @Size Integer vacancy,
 			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward,
 			@NotNull String photo,
 			@NotNull String bases, LanCenter lancenter) {
@@ -90,11 +90,11 @@ public class Event implements Serializable{
 		this.lancenter = lancenter;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -122,11 +122,11 @@ public class Event implements Serializable{
 		this.startedAt = startedAt;
 	}
 
-	public int getVacancy() {
+	public Integer getVacancy() {
 		return vacancy;
 	}
 
-	public void setVacancy(int vacancy) {
+	public void setVacancy(Integer vacancy) {
 		this.vacancy = vacancy;
 	}
 

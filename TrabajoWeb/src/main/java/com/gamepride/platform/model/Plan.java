@@ -20,7 +20,7 @@ public class Plan implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NotEmpty(message = "Debe elegir el tipo de plan.")
 	@Column(name="type",nullable=false,length=20)
@@ -29,23 +29,23 @@ public class Plan implements Serializable {
 	@DecimalMin("0.00")
 	@DecimalMax("30.00")
 	@Column(name="cost",nullable=false,columnDefinition = "Decimal(8,2)")
-	private float cost;
+	private Double cost;
 	
 	public Plan() {
 	}
 
-	public Plan(int id, @NotEmpty String type,
-			@DecimalMin("0.00") @DecimalMax("30.00") float cost) {
+	public Plan(Integer id, @NotEmpty String type,
+			@DecimalMin("0.00") @DecimalMax("30.00") Double cost) {
 		this.id = id;
 		this.type = type;
 		this.cost = cost;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -57,11 +57,11 @@ public class Plan implements Serializable {
 		this.type = type;
 	}
 
-	public float getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(float cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 }
