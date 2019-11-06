@@ -22,7 +22,7 @@ public class Payment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Column(name="paid_at",nullable=false,length=50)
@@ -36,7 +36,7 @@ public class Payment implements Serializable {
     public Payment() {
 	}
     
-	public Payment(Integer id,
+	public Payment(Long id,
 			@NotNull @Future Date paidAt,
 			@NotNull @Future String typePay) {
 		this.id = id;
@@ -44,10 +44,10 @@ public class Payment implements Serializable {
 		this.typePay = typePay;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

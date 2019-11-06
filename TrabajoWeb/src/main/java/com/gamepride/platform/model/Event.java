@@ -27,7 +27,7 @@ public class Event implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotEmpty(message = "Debe ingresar un nombre de evento.")
 	@Column(name="name",nullable=false,length=40)
@@ -43,7 +43,7 @@ public class Event implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date startedAt;
 	
-	@NotNull(message = "Debe ingresar el número de vacantes.")
+	@NotEmpty(message = "Debe ingresar el número de vacantes.")
 	@Size(min=10,message="El mínimo de vacantes debe ser de 10 jugadores")
 	@Column(name="vacancy",nullable=false)
 	private Integer vacancy;
@@ -59,7 +59,7 @@ public class Event implements Serializable{
 	@Column(name = "published", nullable = false, length = 50)
 	private Boolean published;
 	
-	@NotNull(message = "Debe ingresar las bases del torneo.")
+	@NotEmpty(message = "Debe ingresar las bases del torneo.")
 	@Column(name="bases",nullable=false,length=255)
 	private String bases;
 	
@@ -67,20 +67,20 @@ public class Event implements Serializable{
 	@JoinColumn(name="id_lancenter",nullable=false)
 	private LanCenter lancenter;
 	
-	@NotNull(message = "Debe ingresar una foto referencial del torneo.")
+	@NotEmpty(message = "Debe ingresar una foto referencial del torneo.")
 	@Column(name="photo",nullable=false,length=200)
 	private String photo;
 	
 	public Event() {
 	}
 
-	public Event(Integer id, @NotEmpty String name,
+	public Event(Long id, @NotEmpty String name,
 			@NotEmpty String game,
 			@NotNull @Future Date startedAt,
-			@NotNull @Size Integer vacancy,
+			@NotEmpty @Size Integer vacancy,
 			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward, Boolean published,
-			@NotNull String photo,
-			@NotNull String bases, LanCenter lancenter) {
+			@NotEmpty String photo,
+			@NotEmpty String bases, LanCenter lancenter) {
 		this.id = id;
 		this.name = name;
 		this.game = game;
@@ -94,11 +94,11 @@ public class Event implements Serializable{
 		this.lancenter = lancenter;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -21,15 +21,16 @@ public class LanCenter implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotEmpty(message = "Debe ingresar el nombre del LanCenter.")
 	@Column(name="name",nullable=false,length=50)
 	private String name;
 	
+	@NotEmpty(message = "Debe ingresar el número del LanCenter.")
 	@Size(min = 7,max = 7,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false)
-	private Integer phone;
+	private String phone;
 	
 	@NotEmpty(message = "Debe ingresar la dirección del LanCenter.")
 	@Column(name="adress",nullable=false,length=60)
@@ -46,8 +47,8 @@ public class LanCenter implements Serializable {
 	public LanCenter() {
 	}
 
-	public LanCenter(Integer id, @NotEmpty String name,
-			@Size Integer phone,
+	public LanCenter(Long id, @NotEmpty String name,
+			@Size String phone,
 			@NotEmpty String adress,
 			@NotEmpty String district, Person manager) {
 		this.id = id;
@@ -58,11 +59,11 @@ public class LanCenter implements Serializable {
 		this.manager = manager;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -74,11 +75,11 @@ public class LanCenter implements Serializable {
 		this.name = name;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

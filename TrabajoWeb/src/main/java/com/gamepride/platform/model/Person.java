@@ -25,6 +25,7 @@ public class Person implements Serializable {
 	@Column(name="name",nullable=false,length=65)
 	private String name;
 	
+	@NotEmpty(message = "Debe ingresar el número de teléfono del usuario.")
 	@Size(min = 9,max = 9,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false,length=9)
 	private Integer phone;
@@ -37,7 +38,7 @@ public class Person implements Serializable {
 	}
 	
 	public Person(Integer id, @NotEmpty String name,
-			@Size Integer phone,
+			@NotEmpty @Size Integer phone,
 			@Size Integer accountNumber) {
 		this.id = id;
 		this.name = name;

@@ -20,7 +20,7 @@ public class Gamer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotEmpty(message = "Debe ingresar el email del usuario.")
 	@Column(name="email",nullable=false,length=50)
@@ -37,7 +37,7 @@ public class Gamer implements Serializable {
 	public Gamer() {
 	}
 
-	public Gamer(Integer id, @NotEmpty String email,
+	public Gamer(Long id, @NotEmpty String email,
 			@NotEmpty String password, Person person) {
 		this.id = id;
 		this.email = email;
@@ -45,11 +45,11 @@ public class Gamer implements Serializable {
 		this.person = person;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
