@@ -1,13 +1,17 @@
 package com.gamepride.platform.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -31,9 +35,15 @@ public class Gamer implements Serializable {
 	private String password;
 
 	@OneToOne
-	@JoinColumn(name="id_person",nullable=false)
+	@JoinColumn(name="person_id",nullable=false)
 	private Person person;
 		
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "event_gamers", 
+		joinColumns = @JoinColumn(name = "gamer_id"), 
+		inverseJoinColumns=@JoinColumn(name = "event_id"))
+	private List<Event> events;
 	public Gamer() {
 	}
 
