@@ -2,12 +2,16 @@ package com.gamepride.platform.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -15,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Event_Gamers")
+@Table(name="event_gamers")
 
 public class EventGamer implements Serializable {
 
@@ -30,6 +34,9 @@ public class EventGamer implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date inscriptedAt;
 
+	@OneToMany(mappedBy = "eventGamerId",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Role> roles;
+	
 	public EventGamer() {
 	}
 	

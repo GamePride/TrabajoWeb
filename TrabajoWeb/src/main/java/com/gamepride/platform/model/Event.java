@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
@@ -49,7 +48,6 @@ public class Event implements Serializable{
 	private Integer vacancy;
 	
 	@DecimalMin("0.00")
-	@DecimalMax("50.00")
 	@Column(name="cost_inscription",nullable=false,columnDefinition = "Decimal(3,2)")
 	private Double costInscription;
 	
@@ -64,7 +62,7 @@ public class Event implements Serializable{
 	private String bases;
 	
 	@ManyToOne
-	@JoinColumn(name="id_lancenter",nullable=false)
+	@JoinColumn(name="lancenter_id",nullable=false)
 	private LanCenter lancenter;
 	
 	@NotEmpty(message = "Debe ingresar una foto referencial del torneo.")
@@ -78,7 +76,7 @@ public class Event implements Serializable{
 			@NotEmpty String game,
 			@NotNull @Future Date startedAt,
 			@NotEmpty @Size Integer vacancy,
-			@DecimalMin("0.00") @DecimalMax("50.00") Double costInscription, String reward, Boolean published,
+			@DecimalMin("0.00") Double costInscription, String reward, Boolean published,
 			@NotEmpty String photo,
 			@NotEmpty String bases, LanCenter lancenter) {
 		this.id = id;
