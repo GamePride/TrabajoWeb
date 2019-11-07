@@ -1,12 +1,17 @@
 package com.gamepride.platform.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -27,6 +32,12 @@ public class Subscription implements Serializable{
 	@Column(name="frequency",nullable=false,length=20)
 	private String frequency;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "subscription_plans", 
+		joinColumns = @JoinColumn(name = "subscription_id"), 
+		inverseJoinColumns=@JoinColumn(name = "plan_id"))
+	private List<Plan> plans;
+	
 	public Subscription() {
 	}
 	

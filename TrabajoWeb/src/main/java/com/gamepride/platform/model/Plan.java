@@ -1,12 +1,14 @@
 package com.gamepride.platform.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -30,6 +32,9 @@ public class Plan implements Serializable {
 	@DecimalMax("30.00")
 	@Column(name="cost",nullable=false,columnDefinition = "Decimal(8,2)")
 	private Double cost;
+	
+	@ManyToMany(mappedBy = "plans")
+	private List<Subscription> subscriptions;
 	
 	public Plan() {
 	}
