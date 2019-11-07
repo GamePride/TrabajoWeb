@@ -19,37 +19,36 @@ public class Person implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotEmpty(message = "Debe ingresar el nombre.")
 	@Column(name="name",nullable=false,length=65)
 	private String name;
 	
-	@NotEmpty(message = "Debe ingresar el número de teléfono del usuario.")
 	@Size(min = 9,max = 9,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false,length=9)
-	private Integer phone;
+	private String phone;
 	
 	@Size(min = 10,max = 30,message="Número de cuentas inválido.")
 	@Column(name="account_number",nullable=false,length=30)
-	private Integer accountNumber;
+	private String accountNumber;
 	
 	public Person() {
 	}
 	
-	public Person(Integer id, @NotEmpty String name,
-			@NotEmpty @Size Integer phone,
-			@Size Integer accountNumber) {
+	public Person(Long id, @NotEmpty String name,
+			@Size @Size(min = 9, max = 9, message = "Número de teléfono inválido.") String phone,
+			@Size String accountNumber) {
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.accountNumber = accountNumber;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -58,16 +57,16 @@ public class Person implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Integer getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(Integer accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 }
