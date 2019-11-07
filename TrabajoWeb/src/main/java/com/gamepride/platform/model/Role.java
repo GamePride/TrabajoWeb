@@ -18,7 +18,7 @@ public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotEmpty(message = "Debe ingresar el rol del usuario.")
 	@Column(name="name",nullable=false,length=40)
@@ -27,16 +27,16 @@ public class Role implements Serializable {
 	public Role() {
 	}
 
-	public Role(Integer id, @NotEmpty String name) {
+	public Role(Long id, @NotEmpty String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

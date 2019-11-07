@@ -17,7 +17,7 @@ public class Subscription implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotEmpty(message = "Debe elegir el tipo de suscripción.")
 	@Column(name="type",nullable=false,length=20)
@@ -30,17 +30,17 @@ public class Subscription implements Serializable{
 	public Subscription() {
 	}
 	
-	public Subscription(Integer id, @NotEmpty String type, @NotEmpty String frequency) {
+	public Subscription(Long id, @NotEmpty String type, @NotEmpty String frequency) {
 		this.id = id;
 		this.type = type;
 		this.frequency = frequency;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
