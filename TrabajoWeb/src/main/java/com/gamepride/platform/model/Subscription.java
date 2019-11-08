@@ -44,6 +44,7 @@ public class Subscription{
 	
 	public Subscription() {
 		people=new ArrayList<>();
+		plans=new ArrayList<>();
 	}
 
 	public Long getId() {

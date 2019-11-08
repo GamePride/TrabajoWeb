@@ -1,4 +1,4 @@
-package com.gamepride.platform.service;
+1package com.gamepride.platform.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,3 +10,4 @@ public interface CrudService<T> {
 	public void deleteById(Long id)throws Exception;
 
 }
+|

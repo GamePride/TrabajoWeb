@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +68,7 @@ public class Event{
 	@Column(name="photo",nullable=false,length=200)
 	private String photo;
 	
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany(mappedBy = "events",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Gamer> gamers;
 	
 	@NotNull(message="Debe seleccionar un LanCenter")

@@ -13,8 +13,8 @@ import com.gamepride.platform.model.Subscription;
 @Repository
 public interface ISubscriptionRepository extends JpaRepository<Subscription, Long>{
 
+	List<Subscription> findByType(String type);
 	
-	List<Subscription> findByName(String name);
-	@Query("SELECT e FROM Subscription s left join fetch s.gamers WHERE s.name LIKE %?1%")
-	Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id);
+	@Query("SELECT s FROM Subscription s left join fetch s.people p WHERE s.id=?1")
+	Optional<Subscription> fetchBySubscriptionIdWithPeople(Long id);
 }
