@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
@@ -32,7 +33,8 @@ public class SubscriptionPlan{
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date subscriptedAt;
 
-	@OneToMany(mappedBy = "subscriptionPlanId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="subscription_id")
 	private List<Payment>payments;
 	
 	public SubscriptionPlan() {

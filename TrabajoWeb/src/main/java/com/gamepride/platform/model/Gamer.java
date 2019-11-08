@@ -44,10 +44,7 @@ public class Gamer{
 		inverseJoinColumns=@JoinColumn(name = "event_id"))
 	private List<Event> events;
 
-	@NotNull(message="Debe seleccionar una suscripción")
-	@ManyToOne
-	@JoinColumn(name="subscription_id",nullable=false)
-	private Subscription subscriptionId;
+
 	
 	public Gamer() {
 		events=new ArrayList<>();
@@ -93,11 +90,5 @@ public class Gamer{
 		this.events = events;
 	}
 
-	public Subscription getSubscriptionId() {
-		return subscriptionId;
-	}
-
-	public void setSubscriptionId(Subscription subscriptionId) {
-		this.subscriptionId = subscriptionId;
-	}
+	
 }

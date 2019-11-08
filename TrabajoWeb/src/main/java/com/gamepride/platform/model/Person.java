@@ -11,10 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -43,6 +45,11 @@ public class Person{
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
+	
+	@NotNull(message="Debe seleccionar una suscripción")
+	@ManyToOne
+	@JoinColumn(name="subscription_id",nullable=false)
+	private Subscription subscriptionId;
 	
 	public Person() {
 		lancenters=new ArrayList<>();
@@ -94,5 +101,12 @@ public class Person{
 
 	public void setGamerId(Gamer gamerId) {
 		this.gamerId = gamerId;
+	}
+	public Subscription getSubscriptionId() {
+		return subscriptionId;
+	}
+
+	public void setSubscriptionId(Subscription subscriptionId) {
+		this.subscriptionId = subscriptionId;
 	}
 }
