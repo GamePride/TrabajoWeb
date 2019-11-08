@@ -1,7 +1,7 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
@@ -21,9 +22,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="event_gamers")
 
-public class EventGamer implements Serializable {
+public class EventGamer{
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -34,17 +34,14 @@ public class EventGamer implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date inscriptedAt;
 
-	@OneToMany(mappedBy = "eventGamerId",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="role_id")
 	private List<Role> roles;
 	
 	public EventGamer() {
+		roles=new ArrayList<>();
 	}
-	
-	public EventGamer(Long id, @NotNull @Future Date inscriptedAt) {
-		this.id = id;
-		this.inscriptedAt = inscriptedAt;
-	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -60,4 +57,13 @@ public class EventGamer implements Serializable {
 	public void setInscriptedAt(Date inscriptedAt) {
 		this.inscriptedAt = inscriptedAt;
 	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 }

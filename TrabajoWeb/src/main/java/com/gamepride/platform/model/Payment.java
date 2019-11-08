@@ -1,6 +1,5 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,17 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="payments")
-public class Payment implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Payment{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,31 +24,26 @@ public class Payment implements Serializable {
 	
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Column(name="paid_at",nullable=false,length=50)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private  Date paidAt;
 	
 	@NotNull(message = "Debe elegir el tipo de pago.")
 	@Column(name="type_pay",nullable=false)
 	private String typePay;
 	
-    public Payment() {
-	}
-    
-	public Payment(Long id,
-			@NotNull @Future Date paidAt,
-			@NotNull @Future String typePay) {
-		this.id = id;
-		this.paidAt = paidAt;
-		this.typePay = typePay;
-	}
+	@NotNull(message="Debe seleccionar un plan de suscripción")
+	@ManyToOne
+	@JoinColumn(name="subscription_plan_id",nullable=false)
+	private SubscriptionPlan subscriptionPlanId;
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Date getPaidAt() {
 		return paidAt;
 	}
@@ -62,7 +55,16 @@ public class Payment implements Serializable {
 	public String getTypePay() {
 		return typePay;
 	}
+
 	public void setTypePay(String typePay) {
 		this.typePay = typePay;
-	}	
+	}
+
+	public SubscriptionPlan getSubscriptionPlanId() {
+		return subscriptionPlanId;
+	}
+
+	public void setSubscriptionPlanId(SubscriptionPlan subscriptionPlanId) {
+		this.subscriptionPlanId = subscriptionPlanId;
+	}
 }

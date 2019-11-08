@@ -1,6 +1,6 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,9 +16,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="plans")
-public class Plan implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Plan{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,27 +35,21 @@ public class Plan implements Serializable {
 	private List<Subscription> subscriptions;
 	
 	public Plan() {
-	}
-
-	public Plan(Long id, @NotEmpty String type,
-			@DecimalMin("0.00") @DecimalMax("30.00") Double cost) {
-		this.id = id;
-		this.type = type;
-		this.cost = cost;
+		subscriptions=new ArrayList<>();
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
-	
+
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -68,5 +60,13 @@ public class Plan implements Serializable {
 
 	public void setCost(Double cost) {
 		this.cost = cost;
+	}
+
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 }

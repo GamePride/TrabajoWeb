@@ -1,21 +1,25 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "people")
-public class Person implements Serializable {
-	
-	private static final long serialVersionUID=1L;
+public class Person{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,40 +37,62 @@ public class Person implements Serializable {
 	@Column(name="account_number",nullable=false,length=30)
 	private String accountNumber;
 	
-	public Person() {
-	}
+	@OneToMany(mappedBy = "personId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<LanCenter> lancenters;
 	
-	public Person(Long id, @NotEmpty String name,
-			@Size @Size(min = 9, max = 9, message = "Número de teléfono inválido.") String phone,
-			@Size String accountNumber) {
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.accountNumber = accountNumber;
+	@OneToOne
+	@JoinColumn(name="gamer_id",nullable=false)
+	private Gamer gamerId;
+	
+	public Person() {
+		lancenters=new ArrayList<>();
 	}
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getAccountNumber() {
 		return accountNumber;
 	}
+
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
+	}
+
+	public List<LanCenter> getLancenters() {
+		return lancenters;
+	}
+
+	public void setLancenters(List<LanCenter> lancenters) {
+		this.lancenters = lancenters;
+	}
+
+	public Gamer getGamerId() {
+		return gamerId;
+	}
+
+	public void setGamerId(Gamer gamerId) {
+		this.gamerId = gamerId;
 	}
 }

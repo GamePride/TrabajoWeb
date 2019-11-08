@@ -1,23 +1,26 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="lancenters")
-public class LanCenter implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class LanCenter{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,23 +43,16 @@ public class LanCenter implements Serializable {
 	@Column(name="district",nullable=false,length=60)
 	private String district;
 
+	@NotNull(message="Debe seleccionar un usuario")
 	@ManyToOne
-	@JoinColumn(name="id_person",nullable=false)
-	private Person manager;
+	@JoinColumn(name="person_id",nullable=false)
+	private Person personId;
 
+	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Event> events;
+	
 	public LanCenter() {
-	}
-
-	public LanCenter(Long id, @NotEmpty String name,
-			@Size String phone,
-			@NotEmpty String adress,
-			@NotEmpty String district, Person manager) {
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.adress = adress;
-		this.district = district;
-		this.manager = manager;
+		events=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -99,11 +95,19 @@ public class LanCenter implements Serializable {
 		this.district = district;
 	}
 
-	public Person getManager() {
-		return manager;
+	public Person getPersonId() {
+		return personId;
 	}
 
-	public void setManager(Person manager) {
-		this.manager = manager;
+	public void setPersonId(Person personId) {
+		this.personId = personId;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 }

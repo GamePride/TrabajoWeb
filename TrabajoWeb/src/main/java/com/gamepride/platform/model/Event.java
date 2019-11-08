@@ -1,6 +1,6 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +23,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="events")
-public class Event implements Serializable{
+public class Event{
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -63,39 +62,20 @@ public class Event implements Serializable{
 	@Column(name="bases",nullable=false,length=255)
 	private String bases;
 	
-	@ManyToOne
-	@JoinColumn(name="lancenter_id",nullable=false)
-	private LanCenter lancenter;
-	
 	@NotEmpty(message = "Debe ingresar una foto referencial del torneo.")
 	@Column(name="photo",nullable=false,length=200)
 	private String photo;
 	
-
 	@ManyToMany(mappedBy = "events")
 	private List<Gamer> gamers;
 	
+	@NotNull(message="Debe seleccionar un LanCenter")
+	@ManyToOne
+	@JoinColumn(name="lancenter_id",nullable=false)
+	private LanCenter lancenterId;
+	
 	public Event() {
-	}
-
-	public Event(Long id, @NotEmpty String name,
-			@NotEmpty String game,
-			@NotNull @Future Date startedAt,
-			@NotEmpty @Size Integer vacancy,
-			@DecimalMin("0.00") Double costInscription, String reward, Boolean published,
-			@NotEmpty String photo,
-			@NotEmpty String bases, LanCenter lancenter) {
-		this.id = id;
-		this.name = name;
-		this.game = game;
-		this.startedAt = startedAt;
-		this.vacancy = vacancy;
-		this.costInscription = costInscription;
-		this.reward = reward;
-		this.published = published;
-		this.photo = photo;
-		this.bases = bases;
-		this.lancenter = lancenter;
+		gamers=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -170,19 +150,27 @@ public class Event implements Serializable{
 		this.bases = bases;
 	}
 
-	public LanCenter getLancenter() {
-		return lancenter;
-	}
-
-	public void setLancenter(LanCenter lancenter) {
-		this.lancenter = lancenter;
-	}
-
 	public String getPhoto() {
 		return photo;
 	}
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public List<Gamer> getGamers() {
+		return gamers;
+	}
+
+	public void setGamers(List<Gamer> gamers) {
+		this.gamers = gamers;
+	}
+
+	public LanCenter getLancenterId() {
+		return lancenterId;
+	}
+
+	public void setLancenterId(LanCenter lancenterId) {
+		this.lancenterId = lancenterId;
 	}
 }

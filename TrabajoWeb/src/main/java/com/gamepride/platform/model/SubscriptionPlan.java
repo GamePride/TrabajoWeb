@@ -1,13 +1,17 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -16,9 +20,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="subscription_plans")
-public class SubscriptionPlan implements Serializable{
+public class SubscriptionPlan{
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -29,14 +32,13 @@ public class SubscriptionPlan implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date subscriptedAt;
 
+	@OneToMany(mappedBy = "subscriptionPlanId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Payment>payments;
+	
 	public SubscriptionPlan() {
+		payments=new ArrayList<>();
 	}
-	
-	public SubscriptionPlan(Long id, @NotNull @Future Date subscriptedAt) {
-		this.id = id;
-		this.subscriptedAt = subscriptedAt;
-	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -51,5 +53,13 @@ public class SubscriptionPlan implements Serializable{
 
 	public void setSubscriptedAt(Date subscriptedAt) {
 		this.subscriptedAt = subscriptedAt;
+	}
+
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
 	}
 }

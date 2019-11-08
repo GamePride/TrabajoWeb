@@ -1,25 +1,26 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="subscriptions")
-public class Subscription implements Serializable{
+public class Subscription{
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -37,14 +38,12 @@ public class Subscription implements Serializable{
 		joinColumns = @JoinColumn(name = "subscription_id"), 
 		inverseJoinColumns=@JoinColumn(name = "plan_id"))
 	private List<Plan> plans;
+
+	@OneToMany(mappedBy = "subscriptionId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Gamer> gamers;
 	
 	public Subscription() {
-	}
-	
-	public Subscription(Long id, @NotEmpty String type, @NotEmpty String frequency) {
-		this.id = id;
-		this.type = type;
-		this.frequency = frequency;
+		gamers=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -59,8 +58,8 @@ public class Subscription implements Serializable{
 		return type;
 	}
 
-	public void setType(String Type) {
-		this.type = Type;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getFrequency() {
@@ -69,5 +68,21 @@ public class Subscription implements Serializable{
 
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
+	}
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
+	}
+
+	public List<Gamer> getGamers() {
+		return gamers;
+	}
+
+	public void setGamers(List<Gamer> gamers) {
+		this.gamers = gamers;
 	}
 }
