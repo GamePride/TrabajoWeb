@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Event_Gamers")
+@Table(name="event_gamers")
 
 public class EventGamer implements Serializable {
 

@@ -38,15 +38,15 @@ public class Gamer implements Serializable {
 	@JoinColumn(name="person_id",nullable=false)
 	private Person person;
 		
-
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "event_gamers", 
 		joinColumns = @JoinColumn(name = "gamer_id"), 
 		inverseJoinColumns=@JoinColumn(name = "event_id"))
 	private List<Event> events;
+	
 	public Gamer() {
 	}
-
+	
 	public Gamer(Long id, @NotEmpty String email,
 			@NotEmpty String password, Person person) {
 		this.id = id;
