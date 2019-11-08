@@ -35,7 +35,7 @@ public class Gamer{
 	@Column(name="password",nullable=false)
 	private String password;
 
-	@OneToOne(mappedBy = "personId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "gamerId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Person person;
 		
 	@ManyToMany(cascade = CascadeType.ALL)
