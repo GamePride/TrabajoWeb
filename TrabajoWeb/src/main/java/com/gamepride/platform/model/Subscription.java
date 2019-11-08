@@ -40,10 +40,10 @@ public class Subscription{
 	private List<Plan> plans;
 
 	@OneToMany(mappedBy = "subscriptionId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Gamer> gamers;
+	private List<Person> people;
 	
 	public Subscription() {
-		gamers=new ArrayList<>();
+		people=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -78,11 +78,11 @@ public class Subscription{
 		this.plans = plans;
 	}
 
-	public List<Gamer> getGamers() {
-		return gamers;
+	public List<Person> getPeople() {
+		return people;
 	}
 
-	public void setGamers(List<Gamer> gamers) {
-		this.gamers = gamers;
+	public void setPeople(List<Person> people) {
+		this.people = people;
 	}
 }
