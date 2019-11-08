@@ -1,5 +1,5 @@
 package com.gamepride.platform.repository;
 
-public interface ISubscriptionPlan {
+public interface ISubscriptionRepository {
 
 }
