@@ -9,8 +9,4 @@ public interface CrudService<T> {
 	public Optional <T> findById (Long id) throws Exception;
 	public void deleteById(Long id)throws Exception;
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> aa44e1ce71507c0ed73ca00ce9919d4a41ad3457
