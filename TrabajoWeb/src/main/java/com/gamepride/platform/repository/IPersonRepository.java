@@ -15,6 +15,6 @@ public interface IPersonRepository extends JpaRepository<Person, Long> {
 	
 	List<Person> findByName(String name);
 	
-	@Query("SELECT e FROM Person e left join fetch e.lancenters WHERE e.name LIKE %?1%")
+	@Query("SELECT p FROM Person p left join fetch p.lancenters l WHERE p.name=?1")
 	Optional<Person> fetchByPersonIdWithLanCenters(Long id);
 }
