@@ -7,9 +7,9 @@ import com.gamepride.platform.model.Event;
 
 public interface IEventService extends ICrudService<Event>{
 
-	void publishEvent(Long id) throws Exception;
+	void publishedEvent(Long id) throws Exception;
 	
-	void disableEvent(Long id) throws Exception;
+	void disabledEvent(Long id) throws Exception;
 	
 	List<Event> fetchEventByName(String name) throws Exception;
 	

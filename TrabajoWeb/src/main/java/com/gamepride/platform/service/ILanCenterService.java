@@ -6,7 +6,7 @@ import com.gamepride.platform.model.LanCenter;
 
 public interface ILanCenterService extends ICrudService<LanCenter>{
 	
-	List<LanCenter> findByName(String name) throws Exception;
+	List<LanCenter> fetchLanCenterByName(String name) throws Exception;
 	
 	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception;
 }
