@@ -55,6 +55,7 @@ public class PersonController {
 		Person person = new Person();
 		model.addAttribute("person", person);
 		model.addAttribute("gamers", loadGamers());
+		model.addAttribute("gamers", loadLanCenters());
 		model.addAttribute("subscritions", loadSubscriptions());
 		model.addAttribute("title", "Nueva persona");
 		return "person/form";
@@ -91,6 +92,7 @@ public class PersonController {
 		
 		model.addAttribute("gamers", loadGamers());
 		model.addAttribute("subscription", loadSubscriptions());
+		model.addAttribute("subscription", loadLanCenters());
 		model.addAttribute("person", person);
 		model.addAttribute("title", "Editar persona");
 		return "person/form";
@@ -108,7 +110,7 @@ public class PersonController {
 	List<Gamer> loadGamers() throws Exception {
 	return gamerService.findAll();
 	}
-	List<LanCenter> loadLanCenter() throws Exception {
+	List<LanCenter> loadLanCenters() throws Exception {
 	return lancenterService.findAll();
 	}
 	List<Subscription> loadSubscriptions() throws Exception {
