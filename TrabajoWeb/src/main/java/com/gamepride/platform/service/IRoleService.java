@@ -1,5 +1,7 @@
 package com.gamepride.platform.service;
 
-public interface IRoleService {
+import com.gamepride.platform.model.Role;
+
+public interface IRoleService extends ICrudService<Role> {
 
 }

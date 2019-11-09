@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.repository.IGamerRepository;
 import com.gamepride.platform.service.IGamerService;
 
+@Service
 public class GamerServiceImpl implements IGamerService {
 
 	@Autowired

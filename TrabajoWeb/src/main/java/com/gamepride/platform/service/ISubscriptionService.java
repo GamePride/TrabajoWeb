@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.gamepride.platform.model.Subscription;
 
-public interface ISubscriptionService {
+public interface ISubscriptionService extends ICrudService<Subscription>{
 
 	List<Subscription> findByType(String type) throws Exception;
 	
