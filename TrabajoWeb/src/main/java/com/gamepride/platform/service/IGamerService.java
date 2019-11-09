@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import com.gamepride.platform.model.Gamer;
 
-public interface IGamerService extends ICrudService<Gamer> {
+public interface IGamerService extends CrudService<Gamer> {
 
-	List<Gamer> fetchGamerByUsername(String username) throws Exception;
+	List<Gamer> findByUsername(String username);
 	
-	Optional<Gamer> fetchByGamerIdWithEvents(Long id) throws Exception;
+	Optional<Gamer> fetchByGamerIdWithEvents(Long id);
 }

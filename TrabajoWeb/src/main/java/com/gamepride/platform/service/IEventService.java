@@ -5,13 +5,13 @@ import java.util.Optional;
 
 import com.gamepride.platform.model.Event;
 
-public interface IEventService extends ICrudService<Event>{
+public interface IEventService extends CrudService<Event>{
 
-	void publishedEvent(Long id) throws Exception;
+	void publishEvent(Long id);
 	
-	void disabledEvent(Long id) throws Exception;
+	void disableEvent(Long id);
 	
-	List<Event> fetchEventByName(String name) throws Exception;
+	List<Event> fetchEventByName(String name);
 	
-	Optional<Event> fetchByEventIdWithGamers(Long id) throws Exception;
+	Optional<Event> fetchByEventIdWithGamers(Long id);
 }
