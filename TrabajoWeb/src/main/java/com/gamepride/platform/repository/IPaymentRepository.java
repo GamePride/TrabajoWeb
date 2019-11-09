@@ -1,3 +1,4 @@
+
 package com.gamepride.platform.repository;
 
 import java.util.List;
