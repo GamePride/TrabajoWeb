@@ -8,5 +8,5 @@ public interface ILanCenterService extends ICrudService<LanCenter>{
 	
 	List<LanCenter> findByName(String name) throws Exception;
 	
-	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id);
+	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception;
 }
