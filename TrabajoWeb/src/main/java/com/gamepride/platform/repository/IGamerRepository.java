@@ -11,12 +11,6 @@ import com.gamepride.platform.model.Gamer;
 
 @Repository
 public interface IGamerRepository extends JpaRepository<Gamer, Long> {
-	
-
-	List<Gamer> findByUsername(String username);
-	
-	@Query("SELECT e FROM Gamer e WHERE e.name LIKE %?1%")
-	List<Gamer> findGamerByName(String name);
 
 	@Query("SELECT g FROM Gamer g WHERE g.username LIKE %?1%")
 	List<Gamer> fetchGamerByUsername(String username);
