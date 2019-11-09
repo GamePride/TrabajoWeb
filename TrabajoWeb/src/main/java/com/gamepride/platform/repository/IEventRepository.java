@@ -15,11 +15,11 @@ public interface IEventRepository extends JpaRepository<Event, Long> {
 	
 	@Modifying
 	@Query(value = "UPDATE events set published=true where id =?1 and vacancy>=10", nativeQuery = true)
-	void publishEvent(Long id);
+	void publishedEvent(Long id);
 	
 	@Modifying
 	@Query(value = "UPDATE events set published=false where id =?1", nativeQuery = true)
-	void disableEvent(Long id);
+	void disabledEvent(Long id);
 	
 	@Query("SELECT e FROM Event e WHERE e.name LIKE %?1%")
 	List<Event> fetchEventByName(String name);
