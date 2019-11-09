@@ -11,10 +11,10 @@ import com.gamepride.platform.model.Person;
 
 @Repository
 public interface IPersonRepository extends JpaRepository<Person, Long> {
-
 	
-	List<Person> findByName(String name);
+	@Query("select e from Event e where e.name like %?1%")
+	List<Person> fetchPersonByName(String name);
 	
-	@Query("SELECT p FROM Person p left join fetch p.lancenters l WHERE p.name=?1")
+	@Query("select p from Person p left join fetch p.lancenters l where p.id=?1")
 	Optional<Person> fetchByPersonIdWithLanCenters(Long id);
 }

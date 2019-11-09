@@ -17,4 +17,5 @@ public interface ISubscriptionRepository extends JpaRepository<Subscription, Lon
 	
 	@Query("SELECT s FROM Subscription s left join fetch s.people p WHERE s.id=?1")
 	Optional<Subscription> fetchBySubscriptionIdWithPeople(Long id);
+
 }
