@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gamepride.platform.model.Event;
 import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.model.LanCenter;
 import com.gamepride.platform.model.Person;
 import com.gamepride.platform.model.Subscription;
 import com.gamepride.platform.service.IGamerService;
+import com.gamepride.platform.service.ILanCenterService;
 import com.gamepride.platform.service.IPersonService;
 import com.gamepride.platform.service.ISubscriptionService;
 
