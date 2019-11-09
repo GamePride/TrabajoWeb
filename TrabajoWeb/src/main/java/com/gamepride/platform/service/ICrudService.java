@@ -3,7 +3,7 @@ package com.gamepride.platform.service;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudService<T> {
+public interface ICrudService<T> {
 	
 	public List<T> findAll() throws Exception;
 	

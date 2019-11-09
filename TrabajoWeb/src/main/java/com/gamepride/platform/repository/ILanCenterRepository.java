@@ -13,6 +13,6 @@ public interface ILanCenterRepository extends JpaRepository<LanCenter, Long> {
 	
 	List<LanCenter> findByName(String name);
 	
-	@Query("select l from LanCenter l join fetch l.personId e join fetch e.gamers g where l.id=?1")
-	List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id);	
+	@Query("select l from LanCenter l join fetch l.events e join fetch l.personId p join fetch p.gamerId where l.id=?1")
+	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id);
 }
