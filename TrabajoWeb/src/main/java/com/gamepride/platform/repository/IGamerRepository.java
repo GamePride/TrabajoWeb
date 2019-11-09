@@ -12,8 +12,19 @@ import com.gamepride.platform.model.Gamer;
 @Repository
 public interface IGamerRepository extends JpaRepository<Gamer, Long> {
 	
+<<<<<<< HEAD
 	List<Gamer> findByUsername(String username);
 	
 	@Query("select g from Gamer g left join fetch g.events e where g.id=?1")
 	Optional<Gamer> fetchByGamerIdWithEvents(Long id);
+||||||| merged common ancestors
+	@Query("SELECT e FROM Gamer e WHERE e.name LIKE %?1%")
+	List<Gamer> findGamerByName(String name);
+=======
+	@Query("SELECT g FROM Gamer g WHERE g.username LIKE %?1%")
+	List<Gamer> fetchGamerByUsername(String username);
+	
+	@Query("select g from Gamer g left join fetch g.events e where g.id=?1")
+	Optional<Gamer> fetchByGamerIdWithEvents(Long id);
+>>>>>>> Developer
 }

@@ -13,11 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="gamers")
@@ -44,10 +42,7 @@ public class Gamer{
 		inverseJoinColumns=@JoinColumn(name = "event_id"))
 	private List<Event> events;
 
-	@NotNull(message="Debe seleccionar una suscripción")
-	@ManyToOne
-	@JoinColumn(name="subscription_id",nullable=false)
-	private Subscription subscriptionId;
+
 	
 	public Gamer() {
 		events=new ArrayList<>();
@@ -93,11 +88,5 @@ public class Gamer{
 		this.events = events;
 	}
 
-	public Subscription getSubscriptionId() {
-		return subscriptionId;
-	}
-
-	public void setSubscriptionId(Subscription subscriptionId) {
-		this.subscriptionId = subscriptionId;
-	}
+	
 }
