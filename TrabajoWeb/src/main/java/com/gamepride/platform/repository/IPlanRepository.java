@@ -12,8 +12,8 @@ import com.gamepride.platform.model.Plan;
 @Repository
 public interface IPlanRepository extends JpaRepository<Plan, Long> {
 
-	List<Plan> findByName(String name);
+	List<Plan> findByType(String type);
 	
-	@Query("SELECT p FROM Plan p left join fetch p.subscriptions s WHERE p.name LIKE %?1%")
+	@Query("SELECT p FROM Plan p left join fetch p.subscriptions s WHERE p.id=?1")
 	Optional<Plan> fetchPlanIdWithSubscriptions(Long id);
 }

@@ -12,7 +12,7 @@ import com.gamepride.platform.model.Person;
 @Repository
 public interface IPersonRepository extends JpaRepository<Person, Long> {
 	
-	List<Person> findByType(String type);
+	List<Person> findByName(String name);
 	
 	@Query("select p from Person p left join fetch p.lancenters l where p.id=?1")
 	Optional<Person> fetchByPersonIdWithLanCenters(Long id);
