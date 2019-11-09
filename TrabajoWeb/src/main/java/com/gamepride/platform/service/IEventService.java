@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.gamepride.platform.model.Event;
 
-public interface IEventService extends CrudService<Event>{
+public interface IEventService extends ICrudService<Event>{
 
 	void publishEvent(Long id);
 	
