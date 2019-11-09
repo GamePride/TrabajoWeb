@@ -11,6 +11,13 @@ import com.gamepride.platform.model.LanCenter;
 @Repository
 public interface ILanCenterRepository extends JpaRepository<LanCenter, Long> {
 	
+	List<LanCenter> findByName(String name);
+	
+	@Query("SELECT l FROM LanCenter l left join fetch l.events WHERE l.name LIKE %?1%")
+	List<LanCenter> fetchByLanCenterIdWithEvents(String name);
+	@Query("SELECT e FROM LanCenter e WHERE e.name LIKE %?1%")
+	List<LanCenter> findLanCenterByName(String name);
+
 	@Query("SELECT l FROM LanCenter l WHERE l.name LIKE %?1%")
 	List<LanCenter> fetchLanCenterByName(String name);
 	 
