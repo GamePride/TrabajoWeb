@@ -8,5 +8,4 @@ import com.gamepride.platform.model.Plan;
 public interface IPlanService extends ICrudService<Plan> {
 
 	List<Plan> findByType(String type) throws Exception;
-
 }
