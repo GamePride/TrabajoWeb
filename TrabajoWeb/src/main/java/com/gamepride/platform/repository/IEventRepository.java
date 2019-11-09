@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.gamepride.platform.repository;
 
 import java.util.List;
@@ -82,4 +81,3 @@ public interface IEventRepository extends JpaRepository<Event, Long> {
 	@Query("select e from Event e left join fetch e.gamers g where e.id=?1")
 	Optional<Event> fetchByEventIdWithGamers(Long id);
 }
->>>>>>> Developer

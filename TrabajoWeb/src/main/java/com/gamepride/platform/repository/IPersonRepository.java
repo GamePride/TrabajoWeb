@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.gamepride.platform.repository;
 
 import java.util.List;
@@ -56,4 +55,4 @@ public interface IPersonRepository extends JpaRepository<Person, Long> {
 	@Query("SELECT p FROM Person p left join fetch p.lancenters l WHERE p.name=?1")
 	Optional<Person> fetchByPersonIdWithLanCenters(Long id);
 }
->>>>>>> Developer
+

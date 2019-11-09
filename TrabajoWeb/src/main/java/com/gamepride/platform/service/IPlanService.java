@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.gamepride.platform.service;
 
 
@@ -25,4 +24,3 @@ public interface IPlanService extends ICrudService<Plan> {
 	List<Plan> fetchPlanById(Long id) throws Exception;
 
 }
->>>>>>> Adrian
