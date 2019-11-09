@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.gamepride.platform.model.Gamer;
 
-public interface GamerService extends CrudService<Gamer> {
+public interface IGamerService extends CrudService<Gamer> {
 
 	List<Gamer> findByUsername(String username);
 	
