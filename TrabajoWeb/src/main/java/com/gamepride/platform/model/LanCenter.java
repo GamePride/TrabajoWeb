@@ -36,16 +36,16 @@ public class LanCenter{
 	private String phone;
 	
 	@NotEmpty(message = "Debe ingresar la dirección del LanCenter.")
-	@Column(name="adress",nullable=false,length=60)
-	private String adress;
+	@Column(name="address",nullable=false,length=60)
+	private String address;
 	
 	@NotEmpty(message = "Debe ingresar el distrito del LanCenter.")
-	@Column(name="district",nullable=false,length=60)
+	@Column(name="district",nullable=true,length=60)
 	private String district;
 
-	@NotNull(message="Debe seleccionar un usuario")
+	
 	@ManyToOne
-	@JoinColumn(name="person_id",nullable=false)
+	@JoinColumn(name="person_id",nullable=true)
 	private Person personId;
 
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -79,12 +79,12 @@ public class LanCenter{
 		this.phone = phone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
 	public String getDistrict() {
