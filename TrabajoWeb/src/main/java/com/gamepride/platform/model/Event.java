@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name="events")
@@ -51,14 +53,16 @@ public class Event{
 	private Integer vacancy;
 	
 	@DecimalMin("0.00")
+	@NumberFormat(style =Style.CURRENCY)
 	@Column(name="cost_inscription",nullable=false,columnDefinition = "Decimal(3,2)")
 	private Double costInscription;
 	
+	@NotEmpty(message = "Debe ingresar la recompensa del torneo.")
 	@Column(name="reward",nullable=false,length=40)
 	private String reward;
 
-	@Column(name = "published", nullable = false, length = 50)
-	private Boolean published;
+	@Column(name = "status", length = 50)
+	private String status;
 	
 	@NotEmpty(message = "Debe ingresar las bases del torneo.")
 	@Column(name="bases",nullable=false,length=255)
@@ -136,12 +140,12 @@ public class Event{
 		this.reward = reward;
 	}
 
-	public Boolean getPublished() {
-		return published;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPublished(Boolean published) {
-		this.published = published;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getBases() {

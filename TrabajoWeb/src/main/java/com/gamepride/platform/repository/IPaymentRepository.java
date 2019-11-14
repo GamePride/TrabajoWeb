@@ -1,6 +1,7 @@
 
 package com.gamepride.platform.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ import com.gamepride.platform.model.Payment;
 public interface IPaymentRepository extends JpaRepository<Payment, Long> {
 
 	List<Payment> findByTypePay(String typePay);
+	
+	Collection<Payment> findAllByOrderByTypePayDesc();
 }

@@ -1,8 +1,11 @@
 package com.gamepride.platform.repository;
 
-import com.gamepride.platform.model.Role;
-import com.gamepride.platform.service.ICrudService;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IRoleRepository extends ICrudService<Role>{
+import com.gamepride.platform.model.Role;
+
+@Repository
+public interface IRoleRepository extends JpaRepository<Role,Long>{
 
 }

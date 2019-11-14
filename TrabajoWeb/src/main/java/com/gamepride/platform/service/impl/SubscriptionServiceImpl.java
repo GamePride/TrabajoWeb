@@ -1,5 +1,6 @@
 package com.gamepride.platform.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +26,8 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Optional<Subscription> fetchBySubscriptionIdWithPeople(Long id) throws Exception {
-		return subscriptionRepository.fetchBySubscriptionIdWithPeople(id);
+	public Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id) throws Exception {
+		return subscriptionRepository.fetchBySubscriptionIdWithGamers(id);
 	}
 
 	@Transactional(readOnly = true)
@@ -51,5 +52,11 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 	@Override
 	public void deleteById(Long id) throws Exception {
 		subscriptionRepository.deleteById(id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<Subscription> getSubscription() throws Exception {
+		return subscriptionRepository.findAllByOrderByTypeDesc();
 	}
 }

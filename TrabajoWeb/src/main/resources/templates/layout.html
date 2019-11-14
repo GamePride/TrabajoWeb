@@ -15,7 +15,7 @@
 <body>
 
 	<header th:fragment="header">
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+		<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarTogglerDemo01"
 				aria-controls="navbarTogglerDemo01" aria-expanded="false"
@@ -23,20 +23,17 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">GamePride</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/patients/list}">Gamers</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav navbar-right">
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" th:href="@{/}">GamePride</a>
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<li class="nav-item"><a class="nav-link text-white"
+						href="#about" th:href="@{/events/new}">Torneos</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						href="#about1" th:href="@{/people/new}">Registrate</a></li>
 				</ul>
 			</div>
 		</nav>
-		
+
 		<div class="container text-center">
 			<h1>GamePride</h1>
 		</div>
@@ -54,9 +51,7 @@
 
 
 	<footer th:fragment="footer" class="container">
-		<p>
-			Publicado por Cuarta Dimensión.&copy; Compañía 2019.
-		</p>
+		<p>Copyright &copy; GamePride 2019.</p>
 
 
 		<script th:src="@{/js/jquery.min.js}"></script>

@@ -1,5 +1,6 @@
 package com.gamepride.platform.repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,8 @@ public interface ISubscriptionRepository extends JpaRepository<Subscription, Lon
 
 	List<Subscription> findByType(String type);
 	
-	@Query("SELECT s FROM Subscription s left join fetch s.people p WHERE s.id=?1")
-	Optional<Subscription> fetchBySubscriptionIdWithPeople(Long id);
+	@Query("SELECT s FROM Subscription s left join fetch s.gamer g WHERE s.id=?1")
+	Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id);
 
+	Collection<Subscription> findAllByOrderByTypeDesc();
 }

@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -36,17 +36,17 @@ public class LanCenter{
 	private String phone;
 	
 	@NotEmpty(message = "Debe ingresar la dirección del LanCenter.")
-	@Column(name="adress",nullable=false,length=60)
-	private String adress;
+	@Column(name="address",nullable=false,length=60)
+	private String address;
 	
 	@NotEmpty(message = "Debe ingresar el distrito del LanCenter.")
 	@Column(name="district",nullable=false,length=60)
 	private String district;
 
 	@NotNull(message="Debe seleccionar un usuario")
-	@ManyToOne
-	@JoinColumn(name="person_id",nullable=false)
-	private Person personId;
+	@OneToOne
+	@JoinColumn(name="gamer_id",nullable=false)
+	private Gamer gamerId;
 
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Event> events;
@@ -79,12 +79,12 @@ public class LanCenter{
 		this.phone = phone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
 	public String getDistrict() {
@@ -95,12 +95,16 @@ public class LanCenter{
 		this.district = district;
 	}
 
-	public Person getPersonId() {
-		return personId;
+	public Gamer getGamerId() {
+		return gamerId;
 	}
 
-	public void setPersonId(Person personId) {
-		this.personId = personId;
+	public void setGamerId(Gamer gamerId) {
+		this.gamerId = gamerId;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public List<Event> getEvents() {

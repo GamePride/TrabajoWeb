@@ -1,5 +1,6 @@
 package com.gamepride.platform.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,5 +46,11 @@ public class PlanServiceImpl implements IPlanService {
 	@Override
 	public List<Plan> findByType(String type) throws Exception {
 		return planRepository.findByType(type);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<Plan> getPlan() throws Exception {
+		return planRepository.findAllByOrderByTypeDesc();
 	}
 }

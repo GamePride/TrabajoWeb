@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+	<header th:replace="/layout :: header"></header>
+	<div class="container">
+		<form th:action="@{/events/save}" th:object="${event}" method="post">
+			<div class="card">
+				<div class="card-header text-white bg-primary">Torneo</div>
+				<div class="card-body">
+
+					<div class="form-group row">
+						<label for="inputName" class="col-sm-2 col-form-label">Nombre
+							del evento</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="inputName"
+								placeholder="Evento">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputGame" class="col-sm-2 col-form-label">Juego</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="inputGame"
+								placeholder="Juego">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputVacancy" class="col-sm-2 col-form-label">Numero
+							de vacantes</label>
+						<div class="col-sm-5">
+							<input type="number" class="form-control" id="inputVacancy"
+								placeholder="10">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputCost" class="col-sm-2 col-form-label">Costo
+							de inscripcion</label>
+						<div class="col-sm-5">
+							<input type="number" class="form-control" id="inputCost"
+								step=".01" placeholder="20.00">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputBases">Bases del torneo</label>
+						<textarea class="col-sm-7 form-control" id="inputBases" rows="4"></textarea>
+					</div>
+					<div class="form-group row">
+						<label for="inputReward" class="col-sm-2 col-form-label">Premio</label>
+						<div class="col-sm-5">
+							<input type="number" class="form-control" id="inputReward"
+								step=".01" placeholder="Premio">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputLanCenter" class="col-sm-2 col-form-label">LanCenter</label>
+						<div class="col-sm-5">
+							<select class="form-control" id="inputLanCenter">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Foto del evento</label> <input
+							type="file" class="form-control-file"
+							id="exampleFormControlFile1">
+					</div>
+					
+					<div class="form-group row" align="center">
+						<div class="col-sm-11">
+						<p></p>
+							<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+							<a href="/events/list" class="btn btn-danger">Cancelar</a>
+						</div>
+					</div>
+					<p th:text="${message}" class="form-text text-danger"></p>
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+	<header th:replace="/layout :: header"></header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-primary">Datos</div>
+			<div class="card-body">
+				<form th:action="@{/people/search}" method="get">
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<Label class="sr-only" for="inputName">Nombre</Label> <input
+								id="inputName" type="text" class="form-control form-control-lg"
+								name="name" placeholder="Nombre de la persona">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="row">Id</th>
+								<th scope="row">Nombre</th>
+								<th scope="row">Apellido</th>
+								<th scope="row">Telefono</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="person: ${people}">
+								<td th:text="${person.id}"></td>
+								<td th:text="${person.name}"></td>
+								<td th:text="${person.lastName}"></td>
+								<td th:text="${person.phone}"></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>
