@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,5 +20,8 @@ public interface ISubscriptionRepository extends JpaRepository<Subscription, Lon
 	@Query("SELECT s FROM Subscription s left join fetch s.gamer g WHERE s.id=?1")
 	Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id);
 
+	@Query("select count(s.type) from Subscription s where s.type = :type")
+	int countByType(@Param("type") String type);
+	
 	Collection<Subscription> findAllByOrderByTypeDesc();
 }

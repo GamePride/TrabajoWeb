@@ -69,7 +69,7 @@ public class EventController {
 	@GetMapping("/list")
 	public String listEvents(Model model) {
 		try {
-			model.addAttribute("events", eventService.findAll());
+			model.addAttribute("events", eventService.getEvents());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
@@ -85,11 +85,11 @@ public class EventController {
 					model.addAttribute("events", events);
 				} else {
 					model.addAttribute("info", "No existe evento");
-					model.addAttribute("events", eventService.findAll());
+					model.addAttribute("events", eventService.getEvents());
 				}
 			} else {
 				model.addAttribute("info", "Debe ingresar un nombre");
-				model.addAttribute("events", eventService.findAll());
+				model.addAttribute("events", eventService.getEvents());
 			}
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());

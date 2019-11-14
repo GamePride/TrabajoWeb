@@ -27,11 +27,11 @@ public class Gamer{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "Debe ingresar el nombre.")
+	/*@NotEmpty(message = "Debe ingresar el nombre.")*/
 	@Column(name="name",length=65)
 	private String name;
 	
-	@NotEmpty(message = "Debe ingresar el nombre.")
+	/*@NotEmpty(message = "Debe ingresar el nombre.")*/
 	@Column(name="lastName",length=65)
 	private String lastName;
 	
@@ -43,7 +43,7 @@ public class Gamer{
 	@Column(name="account_number",length=30)
 	private String accountNumber;
 	
-	@NotEmpty(message = "Debe ingresar el Username del usuario.")
+	@NotEmpty(message = "Debe ingresar el username del usuario.")
 	@Column(name="username",nullable=false,length=50)
 	private String username;
 
@@ -132,19 +132,19 @@ public class Gamer{
 		this.accountNumber = accountNumber;
 	}
 
-	public LanCenter getLancenters() {
-		return lancenter;
-	}
-
-	public void setLancenters(LanCenter lancenter) {
-		this.lancenter = lancenter;
-	}
-
 	public Subscription getSubscriptionId() {
 		return subscriptionId;
 	}
 
 	public void setSubscriptionId(Subscription subscriptionId) {
 		this.subscriptionId = subscriptionId;
+	}
+
+	public LanCenter getLancenter() {
+		return lancenter;
+	}
+
+	public void setLancenter(LanCenter lancenter) {
+		this.lancenter = lancenter;
 	}
 }

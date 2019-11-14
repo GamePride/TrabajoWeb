@@ -18,16 +18,15 @@ public class GamerServiceImpl implements IGamerService {
 	@Autowired
 	private IGamerRepository gamerRepository;
 
-	@Transactional(readOnly = true)
-	@Override
-	public List<Gamer> findAll() throws Exception {
-		return gamerRepository.findAll();
-	}
-
 	@Transactional
 	@Override
-	public Gamer save(Gamer g) throws Exception {
-		return gamerRepository.save(g);
+	public int create(Gamer g) throws Exception {
+		int result=gamerRepository.countByUsername(g.getUsername());
+		if(result==0)
+		{
+			gamerRepository.save(g);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)

@@ -8,12 +8,12 @@
 		<div class="card">
 			<div class="card-header text-white bg-primary">Datos</div>
 			<div class="card-body">
-				<form th:action="@{/people/search}" method="get">
+				<form th:action="@{/gamers/search}" method="get">
 					<div class="form-row align-items-center">
 						<div class="col-auto">
 							<Label class="sr-only" for="inputName">Nombre</Label> <input
 								id="inputName" type="text" class="form-control form-control-lg"
-								name="name" placeholder="Nombre de la persona">
+								name="name" placeholder="Nombre de usuario">
 						</div>
 						<div class="col-auto">
 							<button type="submit" class="btn btn-primary">Buscar</button>
@@ -24,20 +24,14 @@
 					<table class="table table-striped">
 						<thead class="bg-primary text-white">
 							<tr>
-								<th scope="row">Id</th>
-								<th scope="row">Nombre</th>
-								<th scope="row">Apellido</th>
-								<th scope="row">Telefono</th>
-
+								<th scope="row">Nombre de usuario</th>
+								<th scope="row">Contraseña</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="person: ${people}">
-								<td th:text="${person.id}"></td>
-								<td th:text="${person.name}"></td>
-								<td th:text="${person.lastName}"></td>
-								<td th:text="${person.phone}"></td>
-
+							<tr th:each="gamer: ${gamers}">
+								<td th:text="${gamer.username}"></td>
+								<td th:text="${gamer.password}"></td>
 							</tr>
 						</tbody>
 					</table>

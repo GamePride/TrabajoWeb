@@ -27,50 +27,50 @@ public class GamerController {
 	private IGamerService gamerService;
 
 	@GetMapping("/new")
-	public String newPerson(Model model) throws Exception {
+	public String newGamer(Model model) throws Exception {
 		model.addAttribute("gamer", new Gamer());
-		return "person/personForm";
+		return "/gamer/gamerForm";
 	}
 
 	@PostMapping("/save")
-	public String savePerson(@Valid Gamer gamer, BindingResult result, Model model, SessionStatus status)
+	public String saveGamer(@Valid Gamer gamer, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "person/personForm";
-		}
-
-		if (gamer.getId() != null) {
-			model.addAttribute("info", "Este usuario ya se encuentra registrado");
-			return "person/personForm";
+			return "/gamer/gamerForm";
 		} else {
-			model.addAttribute("info", "Usuario registrado correctamente");
-			status.setComplete();
-			gamerService.save(gamer);
+			if (gamerService.create(gamer)>0) {
+				model.addAttribute("info", "Este usuario ya existe");
+				return "/gamer/gamerForm";
+			} else {
+				model.addAttribute("info", "Usuario registrado correctamente");
+				status.setComplete();
+			}
 		}
-
-		return "redirect:list";
+		model.addAttribute("gamers",gamerService.getGamers());
+		return "/gamer/gamerList";
 
 	}
 
 	@GetMapping("/list")
-	public String listPeople(Model model) {
+	public String listGamers(Model model) {
 		try {
+			model.addAttribute("gamer", new Gamer());
 			model.addAttribute("gamers", gamerService.getGamers());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "person/personList";
+		return "/gamer/gamerList";
 	}
 
 	@GetMapping("/search")
-	public String searchPerson(@RequestParam("name") String name, Model model) {
+	public String searchGamer(@RequestParam("name") String name, Model model) {
 		try {
 			if (!name.isEmpty()) {
 				List<Gamer> gamers = gamerService.findByUsername(name);
 				if (!gamers.isEmpty()) {
 					model.addAttribute("gamers", gamers);
 				} else {
-					model.addAttribute("info", "No existe la persona");
+					model.addAttribute("info", "No existe el usuario");
 					model.addAttribute("gamers", gamerService.getGamers());
 				}
 			} else {
@@ -80,6 +80,6 @@ public class GamerController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "person/personList";
+		return "gamer/gamerList";
 	}
 }

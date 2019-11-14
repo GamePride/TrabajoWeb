@@ -10,5 +10,5 @@ public interface IPlanService extends ICrudService<Plan> {
 
 	List<Plan> findByType(String type) throws Exception;
 	
-	Collection<Plan> getPlan() throws Exception;
+	Collection<Plan> getPlans() throws Exception;
 }

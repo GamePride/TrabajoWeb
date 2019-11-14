@@ -17,17 +17,16 @@ public class PlanServiceImpl implements IPlanService {
 
 	@Autowired
 	private IPlanRepository planRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Plan> findAll() throws Exception {
-		return planRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Plan save(Plan p) throws Exception {
-		return planRepository.save(p);
+	public int create(Plan p) throws Exception {
+		int result=planRepository.countByType(p.getType());
+		if(result==0)
+		{
+			planRepository.save(p);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)
@@ -50,7 +49,7 @@ public class PlanServiceImpl implements IPlanService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Collection<Plan> getPlan() throws Exception {
+	public Collection<Plan> getPlans() throws Exception {
 		return planRepository.findAllByOrderByTypeDesc();
 	}
 }

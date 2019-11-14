@@ -17,17 +17,16 @@ public class EventServiceImpl implements IEventService {
 
 	@Autowired
 	private IEventRepository eventRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Event> findAll() throws Exception {
-		return eventRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Event save(Event e) throws Exception {
-		return eventRepository.save(e);
+	public int create(Event e) throws Exception {
+		int result=eventRepository.countByName(e.getName());
+		if(result==0)
+		{
+			eventRepository.save(e);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)

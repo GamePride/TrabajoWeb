@@ -18,16 +18,16 @@ public class PaymentServiceImpl implements IPaymentService {
 	@Autowired
 	private IPaymentRepository paymentRepository;
 	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Payment> findAll() throws Exception {
-		return paymentRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Payment save(Payment p) throws Exception {
-		return paymentRepository.save(p);
+	public int create(Payment p) throws Exception {
+		int result=paymentRepository.countByTypePay(p.getTypePay());
+		if(result==0)
+		{
+			paymentRepository.save(p);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)

@@ -30,16 +30,15 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 		return subscriptionRepository.fetchBySubscriptionIdWithGamers(id);
 	}
 
-	@Transactional(readOnly = true)
-	@Override
-	public List<Subscription> findAll() throws Exception {
-		return subscriptionRepository.findAll();
-	}
-
 	@Transactional
 	@Override
-	public Subscription save(Subscription s) throws Exception {
-		return subscriptionRepository.save(s);
+	public int create(Subscription s) throws Exception {
+		int result=subscriptionRepository.countByType(s.getType());
+		if(result==0)
+		{
+			subscriptionRepository.save(s);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)

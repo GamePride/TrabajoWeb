@@ -13,21 +13,20 @@ import com.gamepride.platform.repository.ILanCenterRepository;
 import com.gamepride.platform.service.ILanCenterService;
 
 @Service
-public class LanCenterImpl implements ILanCenterService {
+public class LanCenterServiceImpl implements ILanCenterService {
 
 	@Autowired
 	private ILanCenterRepository lanCenterRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<LanCenter> findAll() throws Exception {
-		return lanCenterRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public LanCenter save(LanCenter l) throws Exception {
-		return lanCenterRepository.save(l);
+	public int create(LanCenter l) throws Exception {
+		int result=lanCenterRepository.countByName(l.getName());
+		if(result==0)
+		{
+			lanCenterRepository.save(l);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)
