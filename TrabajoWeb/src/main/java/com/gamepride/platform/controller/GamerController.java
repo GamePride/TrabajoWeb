@@ -26,7 +26,7 @@ public class GamerController {
 	@Autowired
 	private IGamerService gamerService;
 
-	@GetMapping("/new")
+	@GetMapping("/register")
 	public String newGamer(Model model) throws Exception {
 		model.addAttribute("gamer", new Gamer());
 		return "/gamer/gamerForm";
@@ -39,7 +39,7 @@ public class GamerController {
 			return "/gamer/gamerForm";
 		} else {
 			if (gamerService.create(gamer)>0) {
-				model.addAttribute("info", "Este usuario ya existe");
+				model.addAttribute("error", "Este usuario ya existe");
 				return "/gamer/gamerForm";
 			} else {
 				model.addAttribute("info", "Usuario registrado correctamente");
@@ -47,8 +47,7 @@ public class GamerController {
 			}
 		}
 		model.addAttribute("gamers",gamerService.getGamers());
-		return "/gamer/gamerList";
-
+		return "redirect:/";
 	}
 
 	@GetMapping("/list")

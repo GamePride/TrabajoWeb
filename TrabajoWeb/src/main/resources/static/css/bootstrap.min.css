@@ -139,7 +139,7 @@ b, strong {
 }
 
 small {
-	font-size: 80%
+	font-size: 80%;
 }
 
 sub, sup {
@@ -487,7 +487,7 @@ hr {
 
 code {
 	font-size: 87.5%;
-	color: #e83e8c;
+	color: #fff;
 	word-break: break-word
 }
 
@@ -527,7 +527,7 @@ pre code {
 }
 
 .container {
-	width: 100%;
+	width: 90%;
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
@@ -1323,6 +1323,18 @@ pre code {
 	.offset-lg-11 {
 		margin-left: 91.666667%
 	}
+}
+
+.bg-login-image {
+	background: url("https://i.ibb.co/dJ0CPwB/Imagen2.png");
+	background-position: center;
+	background-size: cover;
+}
+
+.bg-logo-image{
+	background: url("https://i.ibb.co/LSdtRRH/logo.png");
+	background-position: left;
+	
 }
 
 @media ( min-width :1200px) {
@@ -2912,7 +2924,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-block {
 	display: block;
-	width: 100%
+	width: 100%;
+	margin-top:30px;
 }
 
 .btn-block+.btn-block {
@@ -3966,6 +3979,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .navbar-brand {
 	display: inline-block;
 	padding-top: .3125rem;
+	background-position:center;
 	padding-bottom: .3125rem;
 	margin-right: 1rem;
 	font-size: 1.25rem;
@@ -4371,7 +4385,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 1.25rem
+	padding: 1.25rem;
+	margin-top: 60px;
 }
 
 .card-title {

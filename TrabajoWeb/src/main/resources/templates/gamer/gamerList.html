@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="/layout :: head"></head>
 
 <body>
@@ -24,8 +25,8 @@
 					<table class="table table-striped">
 						<thead class="bg-primary text-white">
 							<tr>
-								<th scope="row">Nombre de usuario</th>
-								<th scope="row">Contraseña</th>
+								<th scope="col">Nombre de usuario</th>
+								<th scope="col" sec:authorize="hasRole('USER_GAMER')">Contraseña</th>
 							</tr>
 						</thead>
 						<tbody>

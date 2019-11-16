@@ -31,19 +31,11 @@ public class EventGamer{
 	@Column(name="inscripted_at",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date inscriptedAt;
-
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name="role_id")
-	private List<Role> roles;
 	
 	@PrePersist
 	public void prePersist()
 	{
 		inscriptedAt=new Date();
-	}
-	
-	public EventGamer() {
-		roles=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -61,13 +53,4 @@ public class EventGamer{
 	public void setInscriptedAt(Date inscriptedAt) {
 		this.inscriptedAt = inscriptedAt;
 	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-	
 }

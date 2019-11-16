@@ -1,11 +1,13 @@
 package com.gamepride.platform.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,25 +15,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
-public class Gamer{
+public class Gamer implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	/*@NotEmpty(message = "Debe ingresar el nombre.")*/
+	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
 	@Column(name="name",length=65)
 	private String name;
 	
-	/*@NotEmpty(message = "Debe ingresar el nombre.")*/
+	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
 	@Column(name="lastName",length=65)
 	private String lastName;
 	
@@ -43,7 +47,7 @@ public class Gamer{
 	@Column(name="account_number",length=30)
 	private String accountNumber;
 	
-	@NotEmpty(message = "Debe ingresar el username del usuario.")
+	@NotEmpty(message = "Debe ingresar el alias del usuario.")
 	@Column(name="username",nullable=false,length=50)
 	private String username;
 
@@ -57,6 +61,10 @@ public class Gamer{
 		inverseJoinColumns=@JoinColumn(name = "event_id"))
 	private List<Event> events;
 	
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private List<Role> roles;
+	
 	@OneToOne(mappedBy = "gamerId",cascade = CascadeType.ALL)
 	private LanCenter lancenter;
 	
@@ -66,6 +74,7 @@ public class Gamer{
 	
 	public Gamer() {
 		events=new ArrayList<>();
+		roles=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -146,5 +155,13 @@ public class Gamer{
 
 	public void setLancenter(LanCenter lancenter) {
 		this.lancenter = lancenter;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }
