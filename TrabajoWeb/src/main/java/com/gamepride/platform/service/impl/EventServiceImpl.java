@@ -64,14 +64,10 @@ public class EventServiceImpl implements IEventService {
 	public Optional<Event> fetchByEventIdWithGamers(Long id) throws Exception {
 		return eventRepository.fetchByEventIdWithGamers(id);
 	}
-<<<<<<< HEAD
-}
-=======
-
+	
 	@Transactional(readOnly = true)
 	@Override
 	public Collection<Event> getEvents() throws Exception {
 		return eventRepository.findAllByOrderByNameDesc();
 	}
 }
->>>>>>> César

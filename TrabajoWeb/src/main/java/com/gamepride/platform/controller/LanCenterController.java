@@ -16,11 +16,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.gamepride.platform.model.LanCenter;
 import com.gamepride.platform.service.ILanCenterService;
 
-
-
 @Controller
+@SessionAttributes("lancenter")
 @RequestMapping("/lancenters")
-
 public class LanCenterController {
 	
 	@Autowired
@@ -42,7 +40,7 @@ public class LanCenterController {
 		if(result.hasErrors()) {
 			return "lancenter/lancenter";
 		} else {
-			if(lancenterService.createLanCenter(lancenter) > 0) {
+			if(lancenterService.create(lancenter) > 0) {
 				model.addAttribute("info", "Already exists.");
 			} else {
 				
@@ -60,19 +58,6 @@ public class LanCenterController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "lancenter/listLanCenters";
-	}
-	
-	@RequestMapping("/delete")
-	public String deleteLanCenter(Model model, @RequestParam("id") Long id) {
-		try {
-			lancenterService.deleteLanCenter(id);
-			model.addAttribute("info", "Successfully deleted.");
-
-		} catch(Exception e) {
-			model.addAttribute("info", "Category cannot be deleted.");
-		}
-		model.addAttribute("listLanCenters", lancenterService.getLanCenters());
 		return "lancenter/listLanCenters";
 	}
 }

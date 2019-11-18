@@ -43,17 +43,10 @@ public class LanCenter{
 	@Column(name="district",nullable=true,length=60)
 	private String district;
 
-<<<<<<< HEAD
-	
-	@ManyToOne
-	@JoinColumn(name="person_id",nullable=true)
-	private Person personId;
-=======
 	@NotNull(message="Debe seleccionar un usuario")
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
->>>>>>> César
 
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Event> events;

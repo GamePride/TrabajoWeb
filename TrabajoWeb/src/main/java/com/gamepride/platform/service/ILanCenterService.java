@@ -5,23 +5,13 @@ import java.util.List;
 
 import com.gamepride.platform.model.LanCenter;
 
-public interface ILanCenterService {
+public interface ILanCenterService extends ICrudService<LanCenter>{
 
 	List<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception;
 	
 	List<LanCenter> fetchLanCenterByName(String name) throws Exception;
 	
-<<<<<<< HEAD
-	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception;
-
-	public abstract int createLanCenter(LanCenter lancenter);
-	public abstract int updateLanCenter(Long id, LanCenter lancenter);
-	public abstract int deleteLanCenter(Long id);
-	public abstract Collection<LanCenter> getLanCenters();
-
-=======
 	List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception;
 	
 	Collection<LanCenter> getLanCenters()throws Exception;
->>>>>>> César
 }

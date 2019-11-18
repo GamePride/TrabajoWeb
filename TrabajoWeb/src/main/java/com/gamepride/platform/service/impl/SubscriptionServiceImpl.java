@@ -24,12 +24,6 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 		return subscriptionRepository.findByType(type);
 	}
 
-	@Transactional(readOnly = true)
-	@Override
-	public Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id) throws Exception {
-		return subscriptionRepository.fetchBySubscriptionIdWithGamers(id);
-	}
-
 	@Transactional
 	@Override
 	public int create(Subscription s) throws Exception {
