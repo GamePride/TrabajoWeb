@@ -29,7 +29,11 @@
 				<a class="navbar-brand" th:href="@{/}">GamePride</a>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{/lancenters/new}">Lan Center</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
 						th:href="@{/events/new}">Torneos</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{'/gamers/profile/' + ${gamer.id}}">Perfil</a></li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
 
@@ -41,7 +45,8 @@
 					</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<form id="profileForm" th:action="@{'/gamers/profile/' + ${gamer.id}}">
+							<form id="profileForm"
+								th:action="@{'/gamers/profile/' + ${gamer.id}}">
 								<button class="dropdown-item"
 									onclick="document.getElementById('profileForm').submit();"
 									type="submit">Perfil</button>

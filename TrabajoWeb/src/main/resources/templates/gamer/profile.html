@@ -31,8 +31,53 @@
 								<td th:text="${gamer.username}">
 							</tr>
 							<tr class="text-center">
-								<td>Tel&eacute;fono</td>
+								<td>Celular</td>
 								<td th:text="${gamer.phone}">
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<div></div>
+				<div class="table-responsive">
+
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th>Datos del Lan Center</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody th:if="${#lists.isEmpty(gamer.lancenter)}"
+							class="alert alert-info">
+							<tr>
+								<td
+									th:text="'El usuario ' + ${gamer.name} + ' ' + ${gamer.lastName}  +' no cuenta con un Lan Center registrado'">
+								</td>
+								<td></td>
+							</tr>
+							
+						</tbody>
+						<tbody th:if="${not #lists.isEmpty(gamer.lancenter)}">
+							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+								<td>Nombre</td>
+								<td th:text="${lancenter.name}">
+							</tr>
+							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+								<td>Apellido</td>
+								<td th:text="${lancenter.address}">
+							</tr>
+							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+								<td>Alias</td>
+								<td th:text="${lancenter.district}">
+							</tr>
+							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+								<td>Tel&eacute;fono</td>
+								<td th:text="${lancenter.phone}">
+							</tr>
+							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+								<td>Administrador</td>
+								<td th:text="${lancenter.gamerId.name}">
 							</tr>
 						</tbody>
 					</table>

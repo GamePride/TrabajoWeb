@@ -41,10 +41,10 @@ public class GamerController {
 			return "/gamer/gamerForm";
 		} else {
 			if (gamerService.create(gamer)>0) {
-				model.addAttribute("error", "Este usuario ya existe");
+				model.addAttribute("info", "Este competidor ya existe");
 				return "/gamer/gamerForm";
 			} else {
-				model.addAttribute("info", "Usuario registrado correctamente");
+				model.addAttribute("info", "Competidor registrado correctamente");
 				status.setComplete();
 			}
 		}

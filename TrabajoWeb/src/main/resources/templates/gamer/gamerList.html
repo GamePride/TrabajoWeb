@@ -4,7 +4,63 @@
 <head th:replace="layout :: head"></head>
 
 <body>
-	<header th:replace="/layout :: header"></header>
+	<header th:fragment="header">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse">
+				<a class="navbar-brand" th:href="@{/}">GamePride</a>
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{/lancenters/new}">Lan Center</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{/events/new}">Torneos</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{'/gamers/profile/' + ${gamer.id}}">Perfil</a></li>
+				</ul>
+				<ul class="navbar-nav navbar-right">
+
+					<li class="dropdown show"><a
+						class="btn btn-outline-primary dropdown-toggle" href="#"
+						role="button" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <span
+							sec:authentication="name"></span>
+					</a>
+
+						<div class="dropdown-menu dropdown-menu-right">
+							<form id="profileForm"
+								th:action="@{'/gamers/profile/' + ${gamer.id}}">
+								<button class="dropdown-item"
+									onclick="document.getElementById('profileForm').submit();"
+									type="submit">Perfil</button>
+							</form>
+							<form id="logoutForm" th:action="@{/logout}" method="post">
+								<button class="dropdown-item"
+									onclick="document.getElementById('logoutForm').submit();"
+									type="submit">Cerrar Sesion</button>
+							</form>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container text-center">
+			<h1>GamePride</h1>
+		</div>
+
+
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+	</header>
 	<div class="container">
 		<div class="card">
 			<div class="card-header text-white bg-primary">Datos</div>

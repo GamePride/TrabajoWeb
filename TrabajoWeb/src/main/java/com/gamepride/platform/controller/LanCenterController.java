@@ -1,5 +1,7 @@
 package com.gamepride.platform.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,50 +16,84 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.gamepride.platform.model.LanCenter;
+import com.gamepride.platform.service.IEventService;
+import com.gamepride.platform.service.IGamerService;
 import com.gamepride.platform.service.ILanCenterService;
 
 @Controller
 @SessionAttributes("lancenter")
 @RequestMapping("/lancenters")
 public class LanCenterController {
-	
+
 	@Autowired
 	private ILanCenterService lancenterService;
-	
-	@GetMapping("/new")
-	public String newCategory(Model model) {
+
+	@Autowired
+	private IGamerService gamerService;
+
+	@Autowired
+	private IEventService eventService;
+
+	@GetMapping("/create")
+	public String newLanCenter(Model model) throws Exception {
 		model.addAttribute("lancenter", new LanCenter());
-		return "lancenter/lancenter";
+		model.addAttribute("gamers", gamerService.getGamers());
+		model.addAttribute("events", eventService.getEvents());
+		return "/lancenter/lancenter";
 	}
-	
+
 	@PostMapping("/save")
-	public String saveLanCenter(
-			@Valid LanCenter lancenter,
-			BindingResult result,
-			Model model,
-			SessionStatus status) throws Exception {
-	
-		if(result.hasErrors()) {
-			return "lancenter/lancenter";
+	public String saveLanCenter(@Valid LanCenter lancenter, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+
+		if (result.hasErrors()) {
+			model.addAttribute("gamers", gamerService.getGamers());
+			model.addAttribute("events", eventService.getEvents());
+			return "/lancenter/lancenter";
 		} else {
-			if(lancenterService.create(lancenter) > 0) {
-				model.addAttribute("info", "Already exists.");
+			if (lancenterService.create(lancenter) > 0) {
+				model.addAttribute("info", "Usted ya cuenta con una cuenta LanCenter.");
+				model.addAttribute("gamers", gamerService.getGamers());
+				model.addAttribute("events", eventService.getEvents());
+				return "/lancenter/lancenterList";
 			} else {
-				
-				model.addAttribute("info", "Successfully saved.");
+				model.addAttribute("info", "LanCenter creado correctamente.");
 				status.setComplete();
 			}
 		}
-		return "list/listLanCenters";
+		model.addAttribute("lancenters", lancenterService.getLanCenters());
+		return "/lancenter/lancenterList";
 	}
-	
+
 	@GetMapping("/list")
 	public String listLanCenters(Model model) {
 		try {
-			model.addAttribute("listLanCenters", lancenterService.getLanCenters());
+			model.addAttribute("lancenter", new LanCenter());
+			model.addAttribute("lancenters", lancenterService.getLanCenters());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "lancenter/listLanCenters";
+		return "/lancenter/lancenterList";
+	}
+	
+	@GetMapping("/search")
+	public String searchLanCenter(@RequestParam("name") String name, Model model) {
+		try {
+			if (!name.isEmpty()) {
+				List<LanCenter> lancenters = lancenterService.fetchLanCenterByName(name);
+				if (!lancenters.isEmpty()) {
+					model.addAttribute("lancenters", lancenters);
+				} else {
+					model.addAttribute("info", "Lan Center no existe");
+					model.addAttribute("lancenters", lancenterService.getLanCenters());
+				}
+			} else {
+				model.addAttribute("info", "Debe ingresar un nombre");
+				model.addAttribute("lancenters", lancenterService.getLanCenters());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/lancenter/lancenterList";
 	}
 }
