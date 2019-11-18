@@ -39,7 +39,6 @@ public class EventController {
 	@GetMapping("/new")
 	public String newEvent(Model model) throws Exception {
 		model.addAttribute("event", new Event());
-		model.addAttribute("gamers", gamerService.getGamers());
 		return "event/eventForm";
 	}
 

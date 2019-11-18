@@ -14,21 +14,21 @@ import com.gamepride.platform.service.impl.JpaUserDetailsService;
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*	@Autowired
+	@Autowired
 	private JpaUserDetailsService userDetailsService;
 
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;*/
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/gamers/register", "/gamers/save", "/css/**", "js/**", "img/**").permitAll().anyRequest().authenticated()
-				.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll().and().exceptionHandling()
-				.accessDeniedPage("/error");
+		http.authorizeRequests().antMatchers("/", "/gamers/register", "/gamers/save", "/css/**", "js/**", "img/**")
+				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and()
+				.logout().permitAll().and().exceptionHandling().accessDeniedPage("/error");
 	}
-	
-	/*@Autowired
-	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception{
+
+	@Autowired
+	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
 		build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-	}*/
+	}
 }

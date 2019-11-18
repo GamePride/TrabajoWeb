@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="/layout :: head"></head>
+<head th:replace="layout :: head"></head>
 
 <body>
 	<header th:replace="/layout :: header"></header>
@@ -24,15 +24,23 @@
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead class="bg-primary text-white">
-							<tr>
-								<th scope="col">Nombre de usuario</th>
-								<th scope="col" sec:authorize="hasRole('USER_GAMER')">Contraseña</th>
+							<tr sec:authorize="hasRole('ROLE_ADMIN')">
+								<th>Id></th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Alias</th>
+								<th>Tel&eacute;fono</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody sec:authorize="hasRole('ROLE_USER')">
 							<tr th:each="gamer: ${gamers}">
-								<td th:text="${gamer.username}"></td>
-								<td th:text="${gamer.password}"></td>
+								<td th:text="${gamer.id}">
+								<td th:text="${gamer.name}">
+								<td th:text="${gamer.lastName}">
+								<td th:text="${gamer.username}">
+								<td th:text="${gamer.phone}">
+								<td><a th:href="@{'/gamers/profile/' + ${gamer.id}}"
+									class="btn btn-primary">Detalle</a></td>
 							</tr>
 						</tbody>
 					</table>

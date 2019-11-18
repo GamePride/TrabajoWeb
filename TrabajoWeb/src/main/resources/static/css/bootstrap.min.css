@@ -1766,6 +1766,7 @@ pre code {
 	display: block;
 	width: 100%;
 	overflow-x: auto;
+	margin-top:0px;
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar
 }
@@ -4001,6 +4002,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	list-style: none
 }
 
+.navbar-nav {
+	margin-right: 40px
+}
+
 .navbar-nav .nav-link {
 	padding-right: 0;
 	padding-left: 0
@@ -4305,7 +4310,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-brand {
-	color: #fff
+	color: #fff;
 }
 
 .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
@@ -4386,7 +4391,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 	padding: 1.25rem;
-	margin-top: 60px;
+	margin-top: 15px;
 }
 
 .card-title {
@@ -4413,6 +4418,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-header {
 	padding: .75rem 1.25rem;
 	margin-bottom: 0;
+	margin-top:20px;
 	background-color: rgba(0, 0, 0, .03);
 	border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
@@ -6073,7 +6079,7 @@ supports ((-webkit-transform-style:preserve-3d ) or (transform-style:preserve-3d
 }
 
 .bg-primary {
-	background-color: #343a40 !important
+	background-color: #343a40 !important;
 }
 
 a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover
@@ -7670,7 +7676,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .mr-auto, .mx-auto {
-	margin-right: auto !important
+	margin-right: auto !important;
 }
 
 .mb-auto, .my-auto {

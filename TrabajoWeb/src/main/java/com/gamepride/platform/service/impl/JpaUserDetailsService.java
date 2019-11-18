@@ -22,19 +22,18 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private IUserRepository userRepository;
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Gamer gamer=userRepository.findByUsername(username);
-		
-		List<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
-		
-		for(Role role:gamer.getRoles())
-		{
+		Gamer gamer = userRepository.findByUsername(username);
+
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+		for (Role role : gamer.getRoles()) {
 			authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
 		}
-		return new User(gamer.getUsername(),gamer.getPassword(),true,true,true,true,authorities);
+		return new User(gamer.getUsername(), gamer.getPassword(), true, true, true, true, authorities);
 	}
 
 }

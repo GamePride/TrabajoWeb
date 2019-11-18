@@ -62,7 +62,7 @@ public class Gamer implements Serializable{
 	private List<Event> events;
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="gamer_id")
 	private List<Role> roles;
 	
 	@OneToOne(mappedBy = "gamerId",cascade = CascadeType.ALL)

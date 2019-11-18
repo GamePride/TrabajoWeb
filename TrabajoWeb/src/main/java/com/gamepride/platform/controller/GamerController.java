@@ -1,6 +1,7 @@
 package com.gamepride.platform.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,7 +71,7 @@ public class GamerController {
 				if (!gamers.isEmpty()) {
 					model.addAttribute("gamers", gamers);
 				} else {
-					model.addAttribute("info", "No existe el usuario");
+					model.addAttribute("info", "Competidor no existe");
 					model.addAttribute("gamers", gamerService.getGamers());
 				}
 			} else {
@@ -80,5 +82,24 @@ public class GamerController {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "gamer/gamerList";
+	}
+	
+	@GetMapping("/profile/{id}")
+	public String profile(@PathVariable(value="id") Long id, Model model) {
+		try {
+			Optional<Gamer> gamer=gamerService.findById(id);
+			
+			if(!gamer.isPresent()) {
+				model.addAttribute("info","Competidor no existe");
+				return "redirect:/gamers/list";
+			}else {
+				model.addAttribute("gamer",gamer.get());
+			}
+			
+		} catch (Exception e) {
+			model.addAttribute("error",e.getMessage());
+		}
+		
+		return "/gamer/profile";
 	}
 }
