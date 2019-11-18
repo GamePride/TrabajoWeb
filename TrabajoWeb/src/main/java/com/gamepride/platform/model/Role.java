@@ -1,25 +1,26 @@
 package com.gamepride.platform.model;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="roles")
-public class Role{
+@Table(name = "authorities", uniqueConstraints = { @UniqueConstraint(columnNames = { "gamer_id", "authority" }) })
+public class Role implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "Debe ingresar el rol del usuario.")
-	@Column(name="name",nullable=false,length=40)
-	private String name;
-	
+	private String authority;
+
 	public Long getId() {
 		return id;
 	}
@@ -28,11 +29,12 @@ public class Role{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}	
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
 }

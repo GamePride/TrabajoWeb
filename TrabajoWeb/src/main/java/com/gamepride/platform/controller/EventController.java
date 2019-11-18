@@ -1,7 +1,6 @@
 package com.gamepride.platform.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -13,76 +12,88 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gamepride.platform.model.Event;
-import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.service.IEventService;
 import com.gamepride.platform.service.IGamerService;
+import com.gamepride.platform.service.ILanCenterService;
 
 @Controller
-@RequestMapping("event")
-@SessionAttributes("/events")
+@SessionAttributes("event")
+@RequestMapping("/events")
 public class EventController {
 
 	@Autowired
 	private IEventService eventService;
-	
+
 	@Autowired
 	private IGamerService gamerService;
 
-	@GetMapping
-	public String event(Model model) throws Exception {
-		List<Event> events = eventService.findAll();
-		model.addAttribute("event", events);
-		return "event/event";
-	}
+	@Autowired
+	private ILanCenterService lancenterService;
 
-	@GetMapping(value = "new")
+	@GetMapping("/new")
 	public String newEvent(Model model) throws Exception {
-		Event event = new Event();
-		model.addAttribute("event", event);
-		model.addAttribute("gamers", loadGamers());
-		model.addAttribute("title", "Nuevo evento");
-		return "event/form";
+		model.addAttribute("event", new Event());
+		return "event/eventForm";
 	}
 
-	@PostMapping(value = "/save")
-	public String saveEvent(@Valid Event event, BindingResult result, Model model, RedirectAttributes flash,
+	@PostMapping("/save")
+	public String saveEvent(@Valid Event event, RedirectAttributes flash, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("title", "Nuevo evento");
-			return "event/form";
-		}
+			model.addAttribute("lancenters", lancenterService.getLanCenters());
+			model.addAttribute("gamers", gamerService.getGamers());
+			return "event/eventForm";
+		} else {
+			if (event.getId() > 0) {
+				flash.addFlashAttribute("info", "El evento ya existe");
+				model.addAttribute("lancenters", lancenterService.getLanCenters());
+				model.addAttribute("gamers", gamerService.getGamers());
+				return "event/eventForm";
+			} else {
+				flash.addFlashAttribute("info", "Evento creado correctamente");
+				status.setComplete();
+			}
 
-		String mensajeFlash = (event.getId() == null) ? "Evento editado" : "Evento registrado";
-		eventService.save(event);
-		status.setComplete();
-		flash.addFlashAttribute("title", mensajeFlash);
-		return "redirect:/events";
+			model.addAttribute("events", eventService.getEvents());
+			return "/event/eventList";
+		}
 	}
 
-	@GetMapping(value = "/edit/{id}")
-	public String editEvent(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) throws Exception {
-		Optional<Event> event;
-		if (id > 0) {
-			event = eventService.findById(id);
-			if (!event.isPresent()) {
-				flash.addFlashAttribute("error", "El evento no existe");
-				return "redirect:/events";
-			}
-		} else {
-			flash.addFlashAttribute("error", "El evento no existe");
-			return "redirect:/events";
+	@GetMapping("/list")
+	public String listEvents(Model model) {
+		try {
+			model.addAttribute("events", eventService.getEvents());
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
 		}
-		
-		model.addAttribute("gamers", loadGamers());
-		model.addAttribute("event", event);
-		model.addAttribute("title", "Editar cliente");
-		return "event/form";
+		return "/event/eventList";
+	}
 
+	@GetMapping("/search")
+	public String searchEvent(@RequestParam("name") String name, Model model) {
+		try {
+			if (!name.isEmpty()) {
+				List<Event> events = eventService.fetchEventByName(name);
+				if (!events.isEmpty()) {
+					model.addAttribute("events", events);
+				} else {
+					model.addAttribute("info", "No existe evento");
+					model.addAttribute("events", eventService.getEvents());
+				}
+			} else {
+				model.addAttribute("info", "Debe ingresar un nombre");
+				model.addAttribute("events", eventService.getEvents());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/event/eventList";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -92,10 +103,5 @@ public class EventController {
 		return "redirect:/events";
 
 	}
-	
-	List<Gamer> loadGamers() throws Exception {
-		return gamerService.findAll();
-	}
-	
-	/*Termina 4 controller que se implementaron en service*/
+
 }

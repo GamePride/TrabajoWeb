@@ -11,6 +11,7 @@ public interface ILanCenterService {
 	
 	List<LanCenter> fetchLanCenterByName(String name) throws Exception;
 	
+<<<<<<< HEAD
 	List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception;
 
 	public abstract int createLanCenter(LanCenter lancenter);
@@ -18,4 +19,9 @@ public interface ILanCenterService {
 	public abstract int deleteLanCenter(Long id);
 	public abstract Collection<LanCenter> getLanCenters();
 
+=======
+	List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception;
+	
+	Collection<LanCenter> getLanCenters()throws Exception;
+>>>>>>> César
 }

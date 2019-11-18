@@ -1,5 +1,6 @@
 package com.gamepride.platform.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,39 +14,67 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
-public class Gamer{
+public class Gamer implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "Debe ingresar el email del usuario.")
+	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
+	@Column(name="name",length=65)
+	private String name;
+	
+	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
+	@Column(name="lastName",length=65)
+	private String lastName;
+	
+	@Size(min = 9,max = 9,message="Número de teléfono inválido.")
+	@Column(name="phone",length=9)
+	private String phone;
+	
+	@Size(min = 10,max = 30,message="Número de cuentas inválido.")
+	@Column(name="account_number",length=30)
+	private String accountNumber;
+	
+	@NotEmpty(message = "Debe ingresar el alias del usuario.")
 	@Column(name="username",nullable=false,length=50)
 	private String username;
 
 	@NotEmpty(message = "Debe ingresar la contraseña del usuario.")
 	@Column(name="password",nullable=false)
 	private String password;
-
-	@OneToOne(mappedBy = "gamerId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private Person person;
 		
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "event_gamers", 
 		joinColumns = @JoinColumn(name = "gamer_id"), 
 		inverseJoinColumns=@JoinColumn(name = "event_id"))
 	private List<Event> events;
-
-
+	
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="gamer_id")
+	private List<Role> roles;
+	
+	@OneToOne(mappedBy = "gamerId",cascade = CascadeType.ALL)
+	private LanCenter lancenter;
+	
+	@ManyToOne
+	@JoinColumn(name="subscription_id")
+	private Subscription subscriptionId;
 	
 	public Gamer() {
 		events=new ArrayList<>();
+		roles=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -72,14 +101,6 @@ public class Gamer{
 		this.password = password;
 	}
 
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -88,5 +109,59 @@ public class Gamer{
 		this.events = events;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public Subscription getSubscriptionId() {
+		return subscriptionId;
+	}
+
+	public void setSubscriptionId(Subscription subscriptionId) {
+		this.subscriptionId = subscriptionId;
+	}
+
+	public LanCenter getLancenter() {
+		return lancenter;
+	}
+
+	public void setLancenter(LanCenter lancenter) {
+		this.lancenter = lancenter;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 }

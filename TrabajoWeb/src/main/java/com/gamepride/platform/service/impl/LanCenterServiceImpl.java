@@ -13,10 +13,11 @@ import com.gamepride.platform.repository.ILanCenterRepository;
 import com.gamepride.platform.service.ILanCenterService;
 
 @Service
-public class LanCenterImpl implements ILanCenterService {
+public class LanCenterServiceImpl implements ILanCenterService {
 
 	@Autowired
 	private ILanCenterRepository lanCenterRepository;
+<<<<<<< HEAD:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterImpl.java
 	
 
 
@@ -24,17 +25,32 @@ public class LanCenterImpl implements ILanCenterService {
 	public List<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception {
 		return lanCenterRepository.fetchByLanCenterIdWithEvents(id);
 	}
+=======
+>>>>>>> César:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterServiceImpl.java
 
+	@Transactional
 	@Override
+<<<<<<< HEAD:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterImpl.java
 	public List<LanCenter> fetchLanCenterByName(String name) throws Exception {
 		return lanCenterRepository.fetchLanCenterByName(name);
+=======
+	public int create(LanCenter l) throws Exception {
+		int result=lanCenterRepository.countByName(l.getName());
+		if(result==0)
+		{
+			lanCenterRepository.save(l);
+		}
+		return result;
+>>>>>>> César:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterServiceImpl.java
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception {
 		return lanCenterRepository.fetchByLanCenterIdWithEventsWithPeopleWithGamers(id);
 	}
 
+<<<<<<< HEAD:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterImpl.java
 	@Autowired
 	private ILanCenterRepository lancenterRepository;
 	
@@ -49,6 +65,9 @@ public class LanCenterImpl implements ILanCenterService {
 		return result;
 	}
 /*
+=======
+	@Transactional
+>>>>>>> César:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterServiceImpl.java
 	@Override
 	@Transactional
 	public int updateCategory(Long id, Category category) {
@@ -64,6 +83,7 @@ public class LanCenterImpl implements ILanCenterService {
 		
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	@Transactional
 	public int deleteCategory(Long id) {
@@ -75,6 +95,7 @@ public class LanCenterImpl implements ILanCenterService {
 		return result;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Category> getCategories() {
@@ -83,7 +104,9 @@ public class LanCenterImpl implements ILanCenterService {
 	}
 */
 
+	@Transactional(readOnly = true)
 	@Override
+<<<<<<< HEAD:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterImpl.java
 	public int updateLanCenter(Long id, LanCenter lancenter) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -99,5 +122,15 @@ public class LanCenterImpl implements ILanCenterService {
 	public Collection<LanCenter> getLanCenters() {
 		// TODO Auto-generated method stub
 		return null;
+=======
+	public List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception {
+		return lanCenterRepository.fetchByLanCenterIdWithEventsWithGamers(id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<LanCenter> getLanCenters() throws Exception {
+		return lanCenterRepository.findAllByOrderByNameDesc();
+>>>>>>> César:TrabajoWeb/src/main/java/com/gamepride/platform/service/impl/LanCenterServiceImpl.java
 	}
 }

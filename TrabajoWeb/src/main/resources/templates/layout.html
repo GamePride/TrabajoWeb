@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="UTF-8">
 <title>GamePride</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="GamePride - Una plataforma para todo gamer" />
+<meta name="title" content="GamePride - La plataforma para todo gamer" />
 <meta name="description"
-	content="Farma es una cadena de farmacias comercializadora de medicamentos y productos de higiene, de cuidado personal y de belleza" />
+	content="GamePride es una plataforma web que permite a los gamers estar mejor conectados con los diferentes torneos realizados por los distintos LanCenter 
+	 del área de Lima" />
 <meta name="author" content="Cuarta Dimensión">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
@@ -24,19 +26,36 @@
 			</button>
 
 			<div class="collapse navbar-collapse">
+				<a class="navbar-brand" th:href="@{/}">GamePride</a>
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">GamePride</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/patients/list}">Gamers</a>
-					</li>
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{/events/new}">Torneos</a></li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
+
+					<li class="dropdown show"><a
+						class="btn btn-outline-primary dropdown-toggle" href="#"
+						role="button" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <span
+							sec:authentication="name"></span>
+					</a>
+
+						<div class="dropdown-menu dropdown-menu-right">
+							<form id="profileForm" th:action="@{'/gamers/profile/' + ${gamer.id}}">
+								<button class="dropdown-item"
+									onclick="document.getElementById('profileForm').submit();"
+									type="submit">Perfil</button>
+							</form>
+							<form id="logoutForm" th:action="@{/logout}" method="post">
+								<button class="dropdown-item"
+									onclick="document.getElementById('logoutForm').submit();"
+									type="submit">Cerrar Sesion</button>
+							</form>
+						</div></li>
 				</ul>
 			</div>
 		</nav>
-		
+
 		<div class="container text-center">
 			<h1>GamePride</h1>
 		</div>
@@ -54,9 +73,7 @@
 
 
 	<footer th:fragment="footer" class="container">
-		<p>
-			Publicado por Cuarta Dimensión.&copy; Compañía 2019.
-		</p>
+		<p>Derechos Reservados &copy; GamePride 2019.</p>
 
 
 		<script th:src="@{/js/jquery.min.js}"></script>

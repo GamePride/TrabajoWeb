@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -43,10 +43,17 @@ public class LanCenter{
 	@Column(name="district",nullable=true,length=60)
 	private String district;
 
+<<<<<<< HEAD
 	
 	@ManyToOne
 	@JoinColumn(name="person_id",nullable=true)
 	private Person personId;
+=======
+	@NotNull(message="Debe seleccionar un usuario")
+	@OneToOne
+	@JoinColumn(name="gamer_id",nullable=false)
+	private Gamer gamerId;
+>>>>>>> César
 
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Event> events;
@@ -95,12 +102,16 @@ public class LanCenter{
 		this.district = district;
 	}
 
-	public Person getPersonId() {
-		return personId;
+	public Gamer getGamerId() {
+		return gamerId;
 	}
 
-	public void setPersonId(Person personId) {
-		this.personId = personId;
+	public void setGamerId(Gamer gamerId) {
+		this.gamerId = gamerId;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public List<Event> getEvents() {
