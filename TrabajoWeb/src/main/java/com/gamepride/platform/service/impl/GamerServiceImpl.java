@@ -1,5 +1,6 @@
 package com.gamepride.platform.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +17,16 @@ public class GamerServiceImpl implements IGamerService {
 
 	@Autowired
 	private IGamerRepository gamerRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Gamer> findAll() throws Exception {
-		return gamerRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Gamer save(Gamer g) throws Exception {
-		return gamerRepository.save(g);
+	public int create(Gamer g) throws Exception {
+		int result=gamerRepository.countByUsername(g.getUsername());
+		if(result==0)
+		{
+			gamerRepository.save(g);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)
@@ -43,8 +43,8 @@ public class GamerServiceImpl implements IGamerService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Gamer> fetchGamerByUsername(String username) throws Exception {
-		return gamerRepository.fetchGamerByUsername(username);
+	public List<Gamer> findByUsername(String username) throws Exception {
+		return gamerRepository.findByUsername(username);
 	}
 
 	@Transactional(readOnly = true)
@@ -52,4 +52,14 @@ public class GamerServiceImpl implements IGamerService {
 	public Optional<Gamer> fetchByGamerIdWithEvents(Long id) throws Exception {
 		return gamerRepository.fetchByGamerIdWithEvents(id);
 	}
+<<<<<<< HEAD
 }*/
+=======
+
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<Gamer> getGamers() throws Exception {
+		return gamerRepository.findAllByOrderByUsernameDesc();
+	}
+}
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

@@ -12,6 +12,13 @@ public interface ILanCenterService extends ICrudService<LanCenter>{
 	
 	Optional<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception;
 	
+<<<<<<< HEAD
 	Collection<LanCenter> getLanCenters()throws Exception;
 
 }
+=======
+	List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception;
+	
+	Collection<LanCenter> getLanCenters()throws Exception;
+}
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

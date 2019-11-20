@@ -1,5 +1,6 @@
 package com.gamepride.platform.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,16 +18,16 @@ public class PaymentServiceImpl implements IPaymentService {
 	@Autowired
 	private IPaymentRepository paymentRepository;
 	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Payment> findAll() throws Exception {
-		return paymentRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Payment save(Payment p) throws Exception {
-		return paymentRepository.save(p);
+	public int create(Payment p) throws Exception {
+		int result=paymentRepository.countByTypePay(p.getTypePay());
+		if(result==0)
+		{
+			paymentRepository.save(p);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)
@@ -47,4 +48,14 @@ public class PaymentServiceImpl implements IPaymentService {
 		return paymentRepository.findByTypePay(typePay);
 	}
 
+<<<<<<< HEAD
 }*/
+=======
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<Payment> getPayments() throws Exception {
+		return paymentRepository.findAllByOrderByTypePayDesc();
+	}
+
+}
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

@@ -139,7 +139,11 @@ b, strong {
 }
 
 small {
+<<<<<<< HEAD
 	font-size: 80%
+=======
+	font-size: 80%;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 sub, sup {
@@ -377,12 +381,16 @@ template {
 	font-size: 1.25rem;
 	font-weight: 300
 }
+<<<<<<< HEAD
 .card mb-3{
 	width:60px;
 	heigth:100px;
 	position:absolute;
 	
 }
+=======
+
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 .display-1 {
 	font-size: 6rem;
 	font-weight: 300;
@@ -492,7 +500,11 @@ hr {
 
 code {
 	font-size: 87.5%;
+<<<<<<< HEAD
 	color: #e83e8c;
+=======
+	color: #fff;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	word-break: break-word
 }
 
@@ -532,7 +544,11 @@ pre code {
 }
 
 .container {
+<<<<<<< HEAD
 	width: 100%;
+=======
+	width: 90%;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
@@ -1330,6 +1346,21 @@ pre code {
 	}
 }
 
+<<<<<<< HEAD
+=======
+.bg-login-image {
+	background: url("https://i.ibb.co/dJ0CPwB/Imagen2.png");
+	background-position: center;
+	background-size: cover;
+}
+
+.bg-logo-image{
+	background: url("https://i.ibb.co/LSdtRRH/logo.png");
+	background-position: left;
+	
+}
+
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 @media ( min-width :1200px) {
 	.col-xl {
 		-ms-flex-preferred-size: 0;
@@ -1759,6 +1790,10 @@ pre code {
 	display: block;
 	width: 100%;
 	overflow-x: auto;
+<<<<<<< HEAD
+=======
+	margin-top:0px;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar
 }
@@ -2917,7 +2952,12 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-block {
 	display: block;
+<<<<<<< HEAD
 	width: 100%
+=======
+	width: 100%;
+	margin-top:30px;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 .btn-block+.btn-block {
@@ -3971,6 +4011,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .navbar-brand {
 	display: inline-block;
 	padding-top: .3125rem;
+<<<<<<< HEAD
+=======
+	background-position:center;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	padding-bottom: .3125rem;
 	margin-right: 1rem;
 	font-size: 1.25rem;
@@ -3992,6 +4036,13 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	list-style: none
 }
 
+<<<<<<< HEAD
+=======
+.navbar-nav {
+	margin-right: 40px
+}
+
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 .navbar-nav .nav-link {
 	padding-right: 0;
 	padding-left: 0
@@ -4296,7 +4347,11 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-brand {
+<<<<<<< HEAD
 	color: #fff
+=======
+	color: #fff;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
@@ -4376,7 +4431,12 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
+<<<<<<< HEAD
 	padding: 1.25rem
+=======
+	padding: 1.25rem;
+	margin-top: 15px;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 .card-title {
@@ -4403,6 +4463,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-header {
 	padding: .75rem 1.25rem;
 	margin-bottom: 0;
+<<<<<<< HEAD
+=======
+	margin-top:20px;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	background-color: rgba(0, 0, 0, .03);
 	border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
@@ -6063,7 +6127,11 @@ supports ((-webkit-transform-style:preserve-3d ) or (transform-style:preserve-3d
 }
 
 .bg-primary {
+<<<<<<< HEAD
 	background-color: #343a40 !important
+=======
+	background-color: #343a40 !important;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover
@@ -7660,7 +7728,11 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .mr-auto, .mx-auto {
+<<<<<<< HEAD
 	margin-right: auto !important
+=======
+	margin-right: auto !important;
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }
 
 .mb-auto, .my-auto {

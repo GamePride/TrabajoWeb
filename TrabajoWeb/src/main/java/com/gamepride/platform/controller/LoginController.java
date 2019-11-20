@@ -17,16 +17,20 @@ public class LoginController {
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
 			RedirectAttributes flash) {
+
 		if (principal != null) {
-			return "redirect:/panel";
+			return "redirect:/gamers/list";
 		}
+
 		if (error != null) {
 			model.addAttribute("error",
-					"Error en el login: Nombre de usuario o contraseña incorrecta,vuelva a intetarlo");
+					"Nombre de usuario o contraseña incorrectos, ingrese credenciales correctas por favor.");
 		}
-		if (logout != null) {
-			model.addAttribute("success", "Ha cerrado su sesion");
+		
+		if(logout!=null) {
+			model.addAttribute("success","Ha cerrado su sesión con éxito");
 		}
+		
 		return "login";
 	}
 

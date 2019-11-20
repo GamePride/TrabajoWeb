@@ -1,5 +1,6 @@
 package com.gamepride.platform.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +17,16 @@ public class EventServiceImpl implements IEventService {
 
 	@Autowired
 	private IEventRepository eventRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Event> findAll() throws Exception {
-		return eventRepository.findAll();
-	}
 
 	@Transactional
 	@Override
-	public Event save(Event e) throws Exception {
-		return eventRepository.save(e);
+	public int create(Event e) throws Exception {
+		int result=eventRepository.countByName(e.getName());
+		if(result==0)
+		{
+			eventRepository.save(e);
+		}
+		return result;
 	}
 
 	@Transactional(readOnly = true)
@@ -49,8 +49,8 @@ public class EventServiceImpl implements IEventService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public void disabledEvent(Long id) throws Exception {
-		eventRepository.disabledEvent(id);		
+	public void createdEvent(Long id) throws Exception {
+		eventRepository.createdEvent(id);		
 	}
 
 	@Transactional(readOnly = true)
@@ -64,4 +64,14 @@ public class EventServiceImpl implements IEventService {
 	public Optional<Event> fetchByEventIdWithGamers(Long id) throws Exception {
 		return eventRepository.fetchByEventIdWithGamers(id);
 	}
+<<<<<<< HEAD
 }*/
+=======
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Collection<Event> getEvents() throws Exception {
+		return eventRepository.findAllByOrderByNameDesc();
+	}
+}
+>>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
