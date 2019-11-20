@@ -22,7 +22,7 @@ import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.service.IEventService;
 import com.gamepride.platform.service.IGamerService;
 
-@Controller
+/*@Controller
 @RequestMapping("event")
 @SessionAttributes("/events")
 public class EventController {
@@ -97,5 +97,5 @@ public class EventController {
 		return gamerService.findAll();
 	}
 	
-	/*Termina 4 controller que se implementaron en service*/
-}
+	
+}*/

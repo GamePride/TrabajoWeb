@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Payment;
 import com.gamepride.platform.repository.IPaymentRepository;
 import com.gamepride.platform.service.IPaymentService;
 
-@Service
+/*@Service
 public class PaymentServiceImpl implements IPaymentService {
 
 	@Autowired
@@ -47,4 +47,4 @@ public class PaymentServiceImpl implements IPaymentService {
 		return paymentRepository.findByTypePay(typePay);
 	}
 
-}
+}*/

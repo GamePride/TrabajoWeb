@@ -13,40 +13,32 @@ import com.gamepride.platform.repository.ILanCenterRepository;
 import com.gamepride.platform.service.ILanCenterService;
 
 @Service
-public class LanCenterImpl implements ILanCenterService {
+public class LanCenterServiceImpl implements ILanCenterService {
 
 	@Autowired
 	private ILanCenterRepository lanCenterRepository;
 	
-
-
-	@Override
-	public List<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception {
-		return lanCenterRepository.fetchByLanCenterIdWithEvents(id);
-	}
-
-	@Override
-	public List<LanCenter> fetchLanCenterByName(String name) throws Exception {
-		return lanCenterRepository.fetchLanCenterByName(name);
-	}
-
-	@Override
-	public List<LanCenter> fetchByLanCenterIdWithEventsWithPeopleWithGamers(Long id) throws Exception {
-		return lanCenterRepository.fetchByLanCenterIdWithEventsWithPeopleWithGamers(id);
-	}
-
-	@Autowired
-	private ILanCenterRepository lancenterRepository;
 	
-	@Override
 	@Transactional
-	public int createLanCenter(LanCenter lancenter) {
-		// TODO Auto-generated method stub
-		int result = lancenterRepository.countByName(lancenter.getName());
+	@Override
+	public int create(LanCenter lc)throws Exception {
+		int result = lanCenterRepository.countByName(lc.getName());
 		if(result == 0) {
-			lancenterRepository.save(lancenter);
+			lanCenterRepository.save(lc);
 		}
 		return result;
+	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public Optional<LanCenter> findById(Long id)throws Exception{
+		return lanCenterRepository.findById(id);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteById(Long id)throws Exception{
+		lanCenterRepository.deleteById(id);
 	}
 /*
 	@Override
@@ -74,30 +66,24 @@ public class LanCenterImpl implements ILanCenterService {
 		result = category.isPresent() ? 0 : -1;
 		return result;
 	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Collection<Category> getCategories() {
-		// TODO Auto-generated method stub
-		return categoryRepository.findAllByOrderByNameDesc();
-	}
 */
-
+	
+	@Transactional(readOnly=true)
 	@Override
-	public int updateLanCenter(Long id, LanCenter lancenter) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Optional<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception {
+		return lanCenterRepository.fetchByLanCenterIdWithEvents(id);
 	}
 
+	@Transactional(readOnly=true)
 	@Override
-	public int deleteLanCenter(Long id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<LanCenter> findByName(String name) throws Exception {
+		return lanCenterRepository.findByName(name);
 	}
-
-	@Override
-	public Collection<LanCenter> getLanCenters() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	@Transactional(readOnly = true)
+	@Override	
+	public Collection<LanCenter> getLanCenters()throws Exception{
+		return lanCenterRepository.findAllByOrderByNameDesc();
 	}
+	
 }

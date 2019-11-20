@@ -40,14 +40,14 @@ public class LanCenter{
 	private String address;
 	
 	@NotEmpty(message = "Debe ingresar el distrito del LanCenter.")
-	@Column(name="district",nullable=true,length=60)
+	@Column(name="district",nullable=false,length=60)
 	private String district;
 
-	
+	/*
 	@ManyToOne
-	@JoinColumn(name="person_id",nullable=true)
+	@JoinColumn(name="person_id")
 	private Person personId;
-
+*/
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Event> events;
 	
@@ -94,15 +94,14 @@ public class LanCenter{
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
+/*
 	public Person getPersonId() {
 		return personId;
 	}
 
 	public void setPersonId(Person personId) {
 		this.personId = personId;
-	}
-
+	}*/
 	public List<Event> getEvents() {
 		return events;
 	}

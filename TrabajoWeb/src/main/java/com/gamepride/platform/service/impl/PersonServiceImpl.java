@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Person;
 import com.gamepride.platform.repository.IPersonRepository;
 import com.gamepride.platform.service.IPersonService;
 
-@Service
+/*@Service
 public class PersonServiceImpl implements IPersonService {
 
 	@Autowired
@@ -52,4 +52,4 @@ public class PersonServiceImpl implements IPersonService {
 	public Optional<Person> fetchByPersonIdWithLanCenters(Long id) throws Exception {
 		return personRepository.fetchByPersonIdWithLanCenters(id);
 	}
-}
+}*/

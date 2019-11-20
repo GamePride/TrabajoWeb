@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Event;
 import com.gamepride.platform.repository.IEventRepository;
 import com.gamepride.platform.service.IEventService;
 
-@Service
+/*@Service
 public class EventServiceImpl implements IEventService {
 
 	@Autowired
@@ -64,4 +64,4 @@ public class EventServiceImpl implements IEventService {
 	public Optional<Event> fetchByEventIdWithGamers(Long id) throws Exception {
 		return eventRepository.fetchByEventIdWithGamers(id);
 	}
-}
+}*/

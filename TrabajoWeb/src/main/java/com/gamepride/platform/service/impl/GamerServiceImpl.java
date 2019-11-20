@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.repository.IGamerRepository;
 import com.gamepride.platform.service.IGamerService;
 
-@Service
+/*@Service
 public class GamerServiceImpl implements IGamerService {
 
 	@Autowired
@@ -52,4 +52,4 @@ public class GamerServiceImpl implements IGamerService {
 	public Optional<Gamer> fetchByGamerIdWithEvents(Long id) throws Exception {
 		return gamerRepository.fetchByGamerIdWithEvents(id);
 	}
-}
+}*/

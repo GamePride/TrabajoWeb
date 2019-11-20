@@ -34,13 +34,7 @@ public class EventGamer{
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date inscriptedAt;
 
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name="role_id")
-	private List<Role> roles;
 	
-	public EventGamer() {
-		roles=new ArrayList<>();
-	}
 
 	public Long getId() {
 		return id;
@@ -58,12 +52,5 @@ public class EventGamer{
 		this.inscriptedAt = inscriptedAt;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-	
 }

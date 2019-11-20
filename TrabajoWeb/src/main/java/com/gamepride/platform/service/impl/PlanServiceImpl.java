@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Plan;
 import com.gamepride.platform.repository.IPlanRepository;
 import com.gamepride.platform.service.IPlanService;
 
-@Service
+/*@Service
 public class PlanServiceImpl implements IPlanService {
 
 	@Autowired
@@ -46,4 +46,4 @@ public class PlanServiceImpl implements IPlanService {
 	public List<Plan> findByType(String type) throws Exception {
 		return planRepository.findByType(type);
 	}
-}
+}*/

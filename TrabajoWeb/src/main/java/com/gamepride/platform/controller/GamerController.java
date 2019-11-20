@@ -21,7 +21,7 @@ import com.gamepride.platform.model.Event;
 import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.service.IEventService;
 import com.gamepride.platform.service.IGamerService;
-
+/*
 @Controller
 @RequestMapping("Gamer")
 @SessionAttributes("/gamers")
@@ -96,4 +96,4 @@ public class GamerController {
 	List<Event> loadEvents() throws Exception {
 		return eventService.findAll();
 	}	
-}
+}*/

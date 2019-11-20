@@ -11,7 +11,7 @@ import com.gamepride.platform.model.Subscription;
 import com.gamepride.platform.repository.ISubscriptionRepository;
 import com.gamepride.platform.service.ISubscriptionService;
 
-@Service
+/*@Service
 public class SubscriptionServiceImpl implements ISubscriptionService {
 
 	@Autowired
@@ -52,4 +52,4 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 	public void deleteById(Long id) throws Exception {
 		subscriptionRepository.deleteById(id);
 	}
-}
+}*/

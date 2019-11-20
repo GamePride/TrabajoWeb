@@ -38,10 +38,10 @@ public class Person{
 	@Size(min = 10,max = 30,message="Número de cuentas inválido.")
 	@Column(name="account_number",nullable=false,length=30)
 	private String accountNumber;
-	
+	/*
 	@OneToMany(mappedBy = "personId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<LanCenter> lancenters;
-	
+	*/
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
@@ -50,11 +50,11 @@ public class Person{
 	@ManyToOne
 	@JoinColumn(name="subscription_id",nullable=false)
 	private Subscription subscriptionId;
-	
+	/*
 	public Person() {
 		lancenters=new ArrayList<>();
 	}
-
+*/
 	public Long getId() {
 		return id;
 	}
@@ -86,7 +86,7 @@ public class Person{
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-
+/*
 	public List<LanCenter> getLancenters() {
 		return lancenters;
 	}
@@ -94,7 +94,7 @@ public class Person{
 	public void setLancenters(List<LanCenter> lancenters) {
 		this.lancenters = lancenters;
 	}
-
+*/
 	public Gamer getGamerId() {
 		return gamerId;
 	}

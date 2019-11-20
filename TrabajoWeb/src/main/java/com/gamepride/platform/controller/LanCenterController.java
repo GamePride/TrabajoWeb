@@ -1,5 +1,7 @@
 package com.gamepride.platform.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,18 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.gamepride.platform.model.LanCenter;
 import com.gamepride.platform.service.ILanCenterService;
 
-
-
 @Controller
+@SessionAttributes("lancenter")
 @RequestMapping("/lancenters")
-
 public class LanCenterController {
 	
 	@Autowired
-	private ILanCenterService lancenterService;
+	private ILanCenterService lanCenterService;
 	
 	@GetMapping("/new")
-	public String newCategory(Model model) {
+	public String newCategory(Model model)throws Exception {
 		model.addAttribute("lancenter", new LanCenter());
-		return "lancenter/lancenter";
+		return "/lancenter/lancenterForm";
 	}
 	
 	@PostMapping("/save")
@@ -40,39 +40,50 @@ public class LanCenterController {
 			SessionStatus status) throws Exception {
 	
 		if(result.hasErrors()) {
-			return "lancenter/lancenter";
+			return "/lancenter/lancenterForm";
 		} else {
-			if(lancenterService.createLanCenter(lancenter) > 0) {
-				model.addAttribute("info", "Already exists.");
+			if(lanCenterService.create(lancenter) > 0) {
+				model.addAttribute("info", "Este lancenter ya existe.");
 			} else {
 				
-				model.addAttribute("info", "Successfully saved.");
+				model.addAttribute("info", "Lancenter registrado.");
 				status.setComplete();
 			}
 		}
-		return "list/listLanCenters";
+		model.addAttribute("lancenters",lanCenterService.getLanCenters());
+		return "/lancenter/lancenterList";
 	}
 	
 	@GetMapping("/list")
 	public String listLanCenters(Model model) {
 		try {
-			model.addAttribute("listLanCenters", lancenterService.getLanCenters());
+			model.addAttribute("lancenter",new LanCenter());
+			model.addAttribute("lancenters", lanCenterService.getLanCenters());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "lancenter/listLanCenters";
+		return "/lancenter/lancenterList";
 	}
 	
-	@RequestMapping("/delete")
-	public String deleteLanCenter(Model model, @RequestParam("id") Long id) {
+	@GetMapping("/search")
+	public String searchLanCenter(@RequestParam("name") String name, Model model) {
 		try {
-			lancenterService.deleteLanCenter(id);
-			model.addAttribute("info", "Successfully deleted.");
-
-		} catch(Exception e) {
-			model.addAttribute("info", "Category cannot be deleted.");
+			if (!name.isEmpty()) {
+				List<LanCenter> lancenters = lanCenterService.findByName(name);
+				if (!lancenters.isEmpty()) {
+					model.addAttribute("lancenters", lancenters);
+				} else {
+					model.addAttribute("info", "No existe el lancenter");
+					model.addAttribute("lancenters", lanCenterService.getLanCenters());
+				}
+			} else {
+				model.addAttribute("info", "Debe ingresar un nombre");
+				model.addAttribute("lancenters",lanCenterService.getLanCenters());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
 		}
-		model.addAttribute("listLanCenters", lancenterService.getLanCenters());
-		return "lancenter/listLanCenters";
+		return "/lancenter/lancenterList";
 	}
+	
 }
