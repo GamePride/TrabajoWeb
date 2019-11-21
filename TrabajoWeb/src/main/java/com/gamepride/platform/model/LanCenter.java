@@ -43,19 +43,11 @@ public class LanCenter{
 	@Column(name="district",nullable=false,length=60)
 	private String district;
 
-<<<<<<< HEAD
-	/*
-	@ManyToOne
-	@JoinColumn(name="person_id")
-	private Person personId;
-*/
-=======
 	@NotNull(message="Debe seleccionar un usuario")
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
 
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	@OneToMany(mappedBy = "lancenterId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Event> events;
 	
@@ -102,16 +94,6 @@ public class LanCenter{
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-<<<<<<< HEAD
-/*
-	public Person getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(Person personId) {
-		this.personId = personId;
-	}*/
-=======
 
 	public Gamer getGamerId() {
 		return gamerId;
@@ -125,7 +107,6 @@ public class LanCenter{
 		this.address = address;
 	}
 
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 	public List<Event> getEvents() {
 		return events;
 	}

@@ -19,7 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.service.IGamerService;
-/*
+
 @Controller
 @SessionAttributes("gamer")
 @RequestMapping("/gamers")
@@ -41,10 +41,10 @@ public class GamerController {
 			return "/gamer/gamerForm";
 		} else {
 			if (gamerService.create(gamer)>0) {
-				model.addAttribute("info", "Este competidor ya existe");
+				model.addAttribute("error", "Este usuario ya existe");
 				return "/gamer/gamerForm";
 			} else {
-				model.addAttribute("info", "Competidor registrado correctamente");
+				model.addAttribute("info", "Usuario registrado correctamente");
 				status.setComplete();
 			}
 		}
@@ -102,11 +102,4 @@ public class GamerController {
 		
 		return "/gamer/profile";
 	}
-<<<<<<< HEAD
-	List<Event> loadEvents() throws Exception {
-		return eventService.findAll();
-	}	
-}*/
-=======
 }
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

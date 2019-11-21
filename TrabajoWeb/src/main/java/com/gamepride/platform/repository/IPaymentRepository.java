@@ -12,8 +12,6 @@ import com.gamepride.platform.model.Payment;
 
 @Repository
 public interface IPaymentRepository extends JpaRepository<Payment, Long> {
-
-	List<Payment> findByTypePay(String typePay);
 	
 	@Query("select count(p.typePay) from Payment p where p.typePay = :typePay")
 	int countByTypePay(@Param("typePay") String typePay);

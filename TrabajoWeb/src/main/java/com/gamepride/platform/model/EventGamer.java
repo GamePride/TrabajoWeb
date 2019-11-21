@@ -25,17 +25,12 @@ public class EventGamer{
 	@Column(name="inscripted_at",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date inscriptedAt;
-<<<<<<< HEAD
-
-	
-=======
 	
 	@PrePersist
 	public void prePersist()
 	{
 		inscriptedAt=new Date();
 	}
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 
 	public Long getId() {
 		return id;
@@ -52,9 +47,4 @@ public class EventGamer{
 	public void setInscriptedAt(Date inscriptedAt) {
 		this.inscriptedAt = inscriptedAt;
 	}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 }

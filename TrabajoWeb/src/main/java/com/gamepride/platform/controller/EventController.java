@@ -22,15 +22,9 @@ import com.gamepride.platform.service.IEventService;
 import com.gamepride.platform.service.IGamerService;
 import com.gamepride.platform.service.ILanCenterService;
 
-<<<<<<< HEAD
-/*@Controller
-@RequestMapping("event")
-@SessionAttributes("/events")
-=======
 @Controller
 @SessionAttributes("event")
 @RequestMapping("/events")
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 public class EventController {
 
 	@Autowired
@@ -109,15 +103,5 @@ public class EventController {
 		return "redirect:/events";
 
 	}
-<<<<<<< HEAD
-	
-	List<Gamer> loadGamers() throws Exception {
-		return gamerService.findAll();
-	}
-	
-	
-}*/
-=======
 
 }
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

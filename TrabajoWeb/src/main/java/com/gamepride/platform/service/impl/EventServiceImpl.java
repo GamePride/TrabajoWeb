@@ -12,7 +12,7 @@ import com.gamepride.platform.model.Event;
 import com.gamepride.platform.repository.IEventRepository;
 import com.gamepride.platform.service.IEventService;
 
-/*@Service
+@Service
 public class EventServiceImpl implements IEventService {
 
 	@Autowired
@@ -64,14 +64,10 @@ public class EventServiceImpl implements IEventService {
 	public Optional<Event> fetchByEventIdWithGamers(Long id) throws Exception {
 		return eventRepository.fetchByEventIdWithGamers(id);
 	}
-<<<<<<< HEAD
-}*/
-=======
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public Collection<Event> getEvents() throws Exception {
 		return eventRepository.findAllByOrderByNameDesc();
 	}
 }
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

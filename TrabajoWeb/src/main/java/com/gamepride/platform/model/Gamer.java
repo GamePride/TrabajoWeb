@@ -1,6 +1,5 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +22,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
-public class Gamer implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Gamer{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -68,11 +65,22 @@ public class Gamer implements Serializable{
 	@OneToOne(mappedBy = "gamerId",cascade = CascadeType.ALL)
 	private LanCenter lancenter;
 	
-	@ManyToOne
-	@JoinColumn(name="subscription_id")
-	private Subscription subscriptionId;
-	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "subscriptions", 
+		joinColumns = @JoinColumn(name = "gamer_id"), 
+		inverseJoinColumns=@JoinColumn(name = "plan_id"))
+	private List<Plan> plans;
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
+	}
+
 	public Gamer() {
+		plans=new ArrayList<>();
 		events=new ArrayList<>();
 		roles=new ArrayList<>();
 	}
@@ -139,14 +147,6 @@ public class Gamer implements Serializable{
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public Subscription getSubscriptionId() {
-		return subscriptionId;
-	}
-
-	public void setSubscriptionId(Subscription subscriptionId) {
-		this.subscriptionId = subscriptionId;
 	}
 
 	public LanCenter getLancenter() {

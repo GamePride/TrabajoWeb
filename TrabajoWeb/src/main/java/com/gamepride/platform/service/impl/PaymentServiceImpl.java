@@ -12,7 +12,7 @@ import com.gamepride.platform.model.Payment;
 import com.gamepride.platform.repository.IPaymentRepository;
 import com.gamepride.platform.service.IPaymentService;
 
-/*@Service
+@Service
 public class PaymentServiceImpl implements IPaymentService {
 
 	@Autowired
@@ -44,18 +44,8 @@ public class PaymentServiceImpl implements IPaymentService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Payment> findByTypePay(String typePay) throws Exception {
-		return paymentRepository.findByTypePay(typePay);
-	}
-
-<<<<<<< HEAD
-}*/
-=======
-	@Transactional(readOnly = true)
-	@Override
 	public Collection<Payment> getPayments() throws Exception {
 		return paymentRepository.findAllByOrderByTypePayDesc();
 	}
 
 }
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132

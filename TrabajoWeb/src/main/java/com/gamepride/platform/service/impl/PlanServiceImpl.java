@@ -1,7 +1,6 @@
 package com.gamepride.platform.service.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import com.gamepride.platform.model.Plan;
 import com.gamepride.platform.repository.IPlanRepository;
 import com.gamepride.platform.service.IPlanService;
 
-/*@Service
+@Service
 public class PlanServiceImpl implements IPlanService {
 
 	@Autowired
@@ -41,14 +40,6 @@ public class PlanServiceImpl implements IPlanService {
 		planRepository.deleteById(id);
 	}
 
-	@Transactional(readOnly = true)
-	@Override
-	public List<Plan> findByType(String type) throws Exception {
-		return planRepository.findByType(type);
-	}
-<<<<<<< HEAD
-}*/
-=======
 
 	@Transactional(readOnly = true)
 	@Override
@@ -56,4 +47,3 @@ public class PlanServiceImpl implements IPlanService {
 		return planRepository.findAllByOrderByTypeDesc();
 	}
 }
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
