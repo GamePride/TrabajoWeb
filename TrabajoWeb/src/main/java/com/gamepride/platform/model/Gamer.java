@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,11 +21,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
-<<<<<<< HEAD
-public class Gamer {;
-=======
 public class Gamer{
->>>>>>> 2a5255246dd5f9f61e534eb2f141a5b159f230bb
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

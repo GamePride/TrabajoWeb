@@ -79,7 +79,7 @@ public class EventController {
 	public String searchEvent(@RequestParam("name") String name, Model model) {
 		try {
 			if (!name.isEmpty()) {
-				List<Event> events = eventService.fetchEventByName(name);
+				List<Event> events = eventService.findByName(name);
 				if (!events.isEmpty()) {
 					model.addAttribute("events", events);
 				} else {

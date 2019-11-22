@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head"></head>
 
-<body>
+<body class="bg-secondary">
 	<header th:replace="/layout :: header"></header>
 	<div class="container">
 		<div class="card">
@@ -31,15 +31,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
 							<tr th:each="lancenter: ${lancenters}">
-=======
-<<<<<<< HEAD
-							<tr th:each="lancenter: ${lancenters}">
-=======
-							<tr th:each="lancenter: ${listLanCenters}">
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
->>>>>>> 2a5255246dd5f9f61e534eb2f141a5b159f230bb
 								<td th:text="${lancenter.name}"></td>
 								<td th:text="${lancenter.phone}"></td>
 								<td th:text="${lancenter.address}"></td>
