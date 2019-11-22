@@ -16,11 +16,11 @@
 			<div class="collapse navbar-collapse">
 				<a class="navbar-brand" th:href="@{/}">GamePride</a>
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link text-white"
-						th:href="@{/lancenters/new}">Lan Center</a></li>
+					<li class="nav-item"><a class="nav-link text-white" 
+						th:href="@{/lancenters/create}">Lan Center</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
 						th:href="@{/events/new}">Torneos</a></li>
-					<li class="nav-item"><a class="nav-link text-white"
+					<li class="nav-item"><a class="nav-link text-white" th:each="gamer: ${gamers}"
 						th:href="@{'/gamers/profile/' + ${gamer.id}}">Perfil</a></li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
@@ -49,11 +49,6 @@
 			</div>
 		</nav>
 
-		<div class="container text-center">
-			<h1>GamePride</h1>
-		</div>
-
-
 		<div class="alert alert-success" th:if="${success != null}"
 			th:text="${success}"></div>
 		<div class="alert alert-danger" th:if="${error != null}"
@@ -80,17 +75,15 @@
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead class="bg-primary text-white">
-							<tr sec:authorize="hasRole('ROLE_ADMIN')">
-								<th>Id></th>
+							<tr>
 								<th>Nombre</th>
 								<th>Apellido</th>
 								<th>Alias</th>
 								<th>Tel&eacute;fono</th>
 							</tr>
 						</thead>
-						<tbody sec:authorize="hasRole('ROLE_USER')">
+						<tbody>
 							<tr th:each="gamer: ${gamers}">
-								<td th:text="${gamer.id}">
 								<td th:text="${gamer.name}">
 								<td th:text="${gamer.lastName}">
 								<td th:text="${gamer.username}">

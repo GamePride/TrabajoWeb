@@ -1,6 +1,5 @@
 package com.gamepride.platform.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +22,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
-public class Gamer implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Gamer {;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,8 +32,8 @@ public class Gamer implements Serializable{
 	@Column(name="name",length=65)
 	private String name;
 	
-	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
-	@Column(name="lastName",length=65)
+	@NotEmpty(message = "Debe ingresar el apellido del usuario.")
+	@Column(name="last_name",length=65)
 	private String lastName;
 	
 	@Size(min = 9,max = 9,message="Número de teléfono inválido.")

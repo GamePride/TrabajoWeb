@@ -1332,7 +1332,7 @@ pre code {
 }
 
 .bg-logo-image{
-	background: url("https://i.ibb.co/LSdtRRH/logo.png");
+	
 	background-position: left;
 	
 }
@@ -7548,6 +7548,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .p-0 {
+	margin-top: 110px;
 	padding: 0 !important
 }
 

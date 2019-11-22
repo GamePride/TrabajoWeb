@@ -44,7 +44,7 @@ public class Event{
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Future(message = "El torneo no puede ser hoy, ingrese otra fecha.")
 	@Column(name="started_at",nullable=false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
 	private Date startedAt;
 	
 	@NotEmpty(message = "Debe ingresar el número de vacantes.")
@@ -54,7 +54,7 @@ public class Event{
 	
 	@DecimalMin("0.00")
 	@NumberFormat(style =Style.CURRENCY)
-	@Column(name="cost_inscription",nullable=false,columnDefinition = "Decimal(3,2)")
+	@Column(name="cost_inscription",nullable=false,columnDefinition = "Decimal(8,2)")
 	private Double costInscription;
 	
 	@NotEmpty(message = "Debe ingresar la recompensa del torneo.")

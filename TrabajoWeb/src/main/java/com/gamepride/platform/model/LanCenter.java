@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -40,10 +39,9 @@ public class LanCenter{
 	private String address;
 	
 	@NotEmpty(message = "Debe ingresar el distrito del LanCenter.")
-	@Column(name="district",nullable=true,length=60)
+	@Column(name="district",nullable=false,length=60)
 	private String district;
 
-	@NotNull(message="Debe seleccionar un usuario")
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
