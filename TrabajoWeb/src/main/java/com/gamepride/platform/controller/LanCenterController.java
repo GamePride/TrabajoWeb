@@ -20,7 +20,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.gamepride.platform.model.Gamer;
 import com.gamepride.platform.model.LanCenter;
 import com.gamepride.platform.service.IEventService;
-import com.gamepride.platform.service.IGamerService;
 import com.gamepride.platform.service.ILanCenterService;
 
 @Controller
@@ -32,15 +31,11 @@ public class LanCenterController {
 	private ILanCenterService lancenterService;
 
 	@Autowired
-	private IGamerService gamerService;
-
-	@Autowired
 	private IEventService eventService;
 
 	@GetMapping("/register")
 	public String newLanCenter(Model model) throws Exception {
 		model.addAttribute("lancenter", new LanCenter());
-		model.addAttribute("gamers", gamerService.getGamers());
 		model.addAttribute("events", eventService.getEvents());
 		return "/lancenter/lancenter";
 	}
@@ -67,13 +62,16 @@ public class LanCenterController {
 	public String saveLanCenter(@Valid LanCenter lancenter, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("gamers", gamerService.getGamers());
 			model.addAttribute("events", eventService.getEvents());
 			return "/lancenter/lancenter";
 		} else {
 			if (lancenterService.create(lancenter) > 0) {
+<<<<<<< HEAD
 				model.addAttribute("info", "Usted ya cuenta con un Lan Center");
 				model.addAttribute("gamers", gamerService.getGamers());
+=======
+				model.addAttribute("info", "Usted ya cuenta con una cuenta LanCenter.");
+>>>>>>> 2a5255246dd5f9f61e534eb2f141a5b159f230bb
 				model.addAttribute("events", eventService.getEvents());
 				return "/lancenter/lancenter";
 			} else {
@@ -100,7 +98,7 @@ public class LanCenterController {
 	public String searchLanCenter(@RequestParam("name") String name, Model model) {
 		try {
 			if (!name.isEmpty()) {
-				List<LanCenter> lancenters = lancenterService.fetchLanCenterByName(name);
+				List<LanCenter> lancenters = lancenterService.findByName(name);
 				if (!lancenters.isEmpty()) {
 					model.addAttribute("lancenters", lancenters);
 				} else {

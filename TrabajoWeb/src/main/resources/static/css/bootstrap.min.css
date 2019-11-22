@@ -139,7 +139,7 @@ b, strong {
 }
 
 small {
-	font-size: 80%;
+	font-size: 80%
 }
 
 sub, sup {
@@ -488,6 +488,7 @@ hr {
 code {
 	font-size: 87.5%;
 	color: #fff;
+
 	word-break: break-word
 }
 
@@ -4310,7 +4311,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-brand {
-	color: #fff;
+	color: #fff
 }
 
 .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
@@ -7677,7 +7678,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .mr-auto, .mx-auto {
-	margin-right: auto !important;
+	margin-right: auto !important
 }
 
 .mb-auto, .my-auto {

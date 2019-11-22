@@ -22,7 +22,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="gamers")
+<<<<<<< HEAD
 public class Gamer {;
+=======
+public class Gamer{
+>>>>>>> 2a5255246dd5f9f61e534eb2f141a5b159f230bb
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -65,11 +69,22 @@ public class Gamer {;
 	@OneToOne(mappedBy = "gamerId",cascade = CascadeType.ALL)
 	private LanCenter lancenter;
 	
-	@ManyToOne
-	@JoinColumn(name="subscription_id")
-	private Subscription subscriptionId;
-	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "subscriptions", 
+		joinColumns = @JoinColumn(name = "gamer_id"), 
+		inverseJoinColumns=@JoinColumn(name = "plan_id"))
+	private List<Plan> plans;
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
+	}
+
 	public Gamer() {
+		plans=new ArrayList<>();
 		events=new ArrayList<>();
 		roles=new ArrayList<>();
 	}
@@ -136,14 +151,6 @@ public class Gamer {;
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public Subscription getSubscriptionId() {
-		return subscriptionId;
-	}
-
-	public void setSubscriptionId(Subscription subscriptionId) {
-		this.subscriptionId = subscriptionId;
 	}
 
 	public LanCenter getLancenter() {

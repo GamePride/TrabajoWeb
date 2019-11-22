@@ -33,8 +33,8 @@ public class Payment{
 	
 	@NotNull(message="Debe seleccionar un plan de suscripción")
 	@ManyToOne
-	@JoinColumn(name="subscription_plan_id",nullable=false)
-	private SubscriptionPlan subscriptionPlanId;
+	@JoinColumn(name="subscription_id",nullable=false)
+	private Subscription subscriptionId;
 
 	public Long getId() {
 		return id;
@@ -60,11 +60,11 @@ public class Payment{
 		this.typePay = typePay;
 	}
 
-	public SubscriptionPlan getSubscriptionPlanId() {
-		return subscriptionPlanId;
+	public Subscription getSubscriptionId() {
+		return subscriptionId;
 	}
 
-	public void setSubscriptionPlanId(SubscriptionPlan subscriptionPlanId) {
-		this.subscriptionPlanId = subscriptionPlanId;
+	public void setSubscriptionId(Subscription subscriptionId) {
+		this.subscriptionId = subscriptionId;
 	}
 }

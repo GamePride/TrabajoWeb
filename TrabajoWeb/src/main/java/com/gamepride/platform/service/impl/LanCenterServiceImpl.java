@@ -43,19 +43,19 @@ public class LanCenterServiceImpl implements ILanCenterService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception {
+	public Optional<LanCenter> fetchByLanCenterIdWithEvents(Long id) throws Exception {
 		return lanCenterRepository.fetchByLanCenterIdWithEvents(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<LanCenter> fetchLanCenterByName(String name) throws Exception {
-		return lanCenterRepository.fetchLanCenterByName(name);
+	public List<LanCenter> findByName(String name) throws Exception {
+		return lanCenterRepository.findByName(name);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception {
+	public Optional<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id) throws Exception {
 		return lanCenterRepository.fetchByLanCenterIdWithEventsWithGamers(id);
 	}
 

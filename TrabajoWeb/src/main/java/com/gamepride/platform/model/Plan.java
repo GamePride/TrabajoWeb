@@ -32,10 +32,10 @@ public class Plan{
 	private Double cost;
 	
 	@ManyToMany(mappedBy = "plans")
-	private List<Subscription> subscriptions;
+	private List<Gamer> gamers;
 	
 	public Plan() {
-		subscriptions=new ArrayList<>();
+		gamers=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -62,11 +62,11 @@ public class Plan{
 		this.cost = cost;
 	}
 
-	public List<Subscription> getSubscriptions() {
-		return subscriptions;
+	public List<Gamer> getGamers() {
+		return gamers;
 	}
 
-	public void setSubscriptions(List<Subscription> subscriptions) {
-		this.subscriptions = subscriptions;
+	public void setGamers(List<Gamer> gamers) {
+		this.gamers = gamers;
 	}
 }

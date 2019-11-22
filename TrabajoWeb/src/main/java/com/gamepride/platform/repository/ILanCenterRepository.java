@@ -2,6 +2,7 @@ package com.gamepride.platform.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,13 +15,12 @@ import com.gamepride.platform.model.LanCenter;
 public interface ILanCenterRepository extends JpaRepository<LanCenter, Long> {
 	
 	@Query("SELECT l FROM LanCenter l left join fetch l.events WHERE l.id=?1")
-	List<LanCenter> fetchByLanCenterIdWithEvents(Long id);
+	Optional<LanCenter> fetchByLanCenterIdWithEvents(Long id);
 
-	@Query("SELECT l FROM LanCenter l WHERE l.name LIKE %?1%")
-	List<LanCenter> fetchLanCenterByName(String name);
+	List<LanCenter> findByName(String name);
 	 
 	@Query("select l from LanCenter l join fetch l.events e join fetch l.gamerId p where l.id=?1")
-	List<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id);
+	Optional<LanCenter> fetchByLanCenterIdWithEventsWithGamers(Long id);
 	
 	@Query("select count(l.name) from LanCenter l where l.name = :name")
 	int countByName(@Param("name") String name);

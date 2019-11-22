@@ -1,6 +1,7 @@
 package com.gamepride.platform.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,10 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -28,24 +30,36 @@ public class Subscription{
 	@NotEmpty(message = "Debe elegir el tipo de suscripción.")
 	@Column(name="type",nullable=false,length=20)
 	private String type;
+
+	@Column(name="subscripted_at",nullable=false)
+	@Temporal(TemporalType.DATE)
+	private Date subscriptedAt;
 	
-	@NotEmpty(message = "Debe ingresar una frecuencia.")
-	@Column(name="frequency",nullable=false,length=20)
-	private String frequency;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "subscription_plans", 
-		joinColumns = @JoinColumn(name = "subscription_id"), 
-		inverseJoinColumns=@JoinColumn(name = "plan_id"))
-	private List<Plan> plans;
-
-	@OneToMany(mappedBy = "subscriptionId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Gamer> gamer;
+	
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="subscription_id")
+	private List<Payment>payments;
 	
 	public Subscription() {
-		gamer=new ArrayList<>();
-		plans=new ArrayList<>();
+		payments=new ArrayList<>();
 	}
+	
+	@PrePersist
+	public void prePersist()
+	{
+		subscriptedAt=new Date();
+	}
+
+
+	public Date getSubscriptedAt() {
+		return subscriptedAt;
+	}
+
+
+	public void setSubscriptedAt(Date subscriptedAt) {
+		this.subscriptedAt = subscriptedAt;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -63,27 +77,4 @@ public class Subscription{
 		this.type = type;
 	}
 
-	public String getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(String frequency) {
-		this.frequency = frequency;
-	}
-
-	public List<Plan> getPlans() {
-		return plans;
-	}
-
-	public void setPlans(List<Plan> plans) {
-		this.plans = plans;
-	}
-
-	public List<Gamer> getGamer() {
-		return gamer;
-	}
-
-	public void setGamer(List<Gamer> gamer) {
-		this.gamer = gamer;
-	}
 }

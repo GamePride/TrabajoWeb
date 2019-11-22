@@ -1,8 +1,6 @@
 package com.gamepride.platform.service.impl;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,35 +15,6 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 
 	@Autowired
 	private ISubscriptionRepository subscriptionRepository;
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Subscription> findByType(String type) throws Exception {
-		return subscriptionRepository.findByType(type);
-	}
-
-	@Transactional
-	@Override
-	public int create(Subscription s) throws Exception {
-		int result=subscriptionRepository.countByType(s.getType());
-		if(result==0)
-		{
-			subscriptionRepository.save(s);
-		}
-		return result;
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public Optional<Subscription> findById(Long id) throws Exception {
-		return subscriptionRepository.findById(id);
-	}
-
-	@Transactional
-	@Override
-	public void deleteById(Long id) throws Exception {
-		subscriptionRepository.deleteById(id);
-	}
 
 	@Transactional(readOnly = true)
 	@Override
@@ -53,3 +22,4 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 		return subscriptionRepository.findAllByOrderByTypeDesc();
 	}
 }
+

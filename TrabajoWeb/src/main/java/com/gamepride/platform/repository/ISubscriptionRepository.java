@@ -15,11 +15,6 @@ import com.gamepride.platform.model.Subscription;
 @Repository
 public interface ISubscriptionRepository extends JpaRepository<Subscription, Long>{
 
-	List<Subscription> findByType(String type);
-	
-	@Query("SELECT s FROM Subscription s left join fetch s.gamer g WHERE s.id=?1")
-	Optional<Subscription> fetchBySubscriptionIdWithGamers(Long id);
-
 	@Query("select count(s.type) from Subscription s where s.type = :type")
 	int countByType(@Param("type") String type);
 	

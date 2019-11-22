@@ -44,12 +44,6 @@ public class PaymentServiceImpl implements IPaymentService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Payment> findByTypePay(String typePay) throws Exception {
-		return paymentRepository.findByTypePay(typePay);
-	}
-
-	@Transactional(readOnly = true)
-	@Override
 	public Collection<Payment> getPayments() throws Exception {
 		return paymentRepository.findAllByOrderByTypePayDesc();
 	}
