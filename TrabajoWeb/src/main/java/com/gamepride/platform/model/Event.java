@@ -19,7 +19,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -41,16 +40,15 @@ public class Event{
 	@Column(name="game",nullable=false,length=50)
 	private String game;
 	
-	@NotNull(message = "Debe ingresar una fecha.")
 	@Future(message = "El torneo no puede ser hoy, ingrese otra fecha.")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Debe ingresar una fecha.")
 	@Column(name="started_at",nullable=false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
 	private Date startedAt;
 	
 	@NotEmpty(message = "Debe ingresar el número de vacantes.")
-	@Size(min=10,message="El mínimo de vacantes debe ser de 10 jugadores")
 	@Column(name="vacancy",nullable=false)
-	private Integer vacancy;
+	private String vacancy;
 	
 	@DecimalMin("0.00")
 	@NumberFormat(style =Style.CURRENCY)
@@ -116,11 +114,11 @@ public class Event{
 		this.startedAt = startedAt;
 	}
 
-	public Integer getVacancy() {
+	public String getVacancy() {
 		return vacancy;
 	}
 
-	public void setVacancy(Integer vacancy) {
+	public void setVacancy(String vacancy) {
 		this.vacancy = vacancy;
 	}
 

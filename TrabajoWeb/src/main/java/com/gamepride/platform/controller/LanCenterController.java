@@ -33,13 +33,14 @@ public class LanCenterController {
 
 	@Autowired
 	private IGamerService gamerService;
-	
+
 	@Autowired
 	private IEventService eventService;
 
 	@GetMapping("/register")
 	public String newLanCenter(Model model) throws Exception {
 		model.addAttribute("lancenter", new LanCenter());
+		model.addAttribute("gamers", gamerService.getGamers());
 		model.addAttribute("events", eventService.getEvents());
 		return "/lancenter/lancenter";
 	}

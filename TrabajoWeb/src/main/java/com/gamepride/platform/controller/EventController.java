@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gamepride.platform.model.Event;
 import com.gamepride.platform.service.IEventService;
@@ -36,27 +35,29 @@ public class EventController {
 	@Autowired
 	private ILanCenterService lancenterService;
 
-	@GetMapping("/new")
+	@GetMapping("/register")
 	public String newEvent(Model model) throws Exception {
 		model.addAttribute("event", new Event());
+		model.addAttribute("gamers", gamerService.getGamers());
+		model.addAttribute("lancenters",lancenterService.getLanCenters());
 		return "event/eventForm";
 	}
 
 	@PostMapping("/save")
-	public String saveEvent(@Valid Event event, RedirectAttributes flash, BindingResult result, Model model,
+	public String saveEvent(@Valid Event event, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("lancenters", lancenterService.getLanCenters());
 			model.addAttribute("gamers", gamerService.getGamers());
 			return "event/eventForm";
 		} else {
-			if (event.getId() > 0) {
-				flash.addFlashAttribute("info", "El evento ya existe");
+			if (eventService.create(event) > 0) {
+				model.addAttribute("info", "El evento ya existe");
 				model.addAttribute("lancenters", lancenterService.getLanCenters());
 				model.addAttribute("gamers", gamerService.getGamers());
 				return "event/eventForm";
 			} else {
-				flash.addFlashAttribute("info", "Evento creado correctamente");
+				model.addAttribute("info", "Evento creado correctamente");
 				status.setComplete();
 			}
 
@@ -68,6 +69,7 @@ public class EventController {
 	@GetMapping("/list")
 	public String listEvents(Model model) {
 		try {
+			model.addAttribute("event", new Event());
 			model.addAttribute("events", eventService.getEvents());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -76,10 +78,10 @@ public class EventController {
 	}
 
 	@GetMapping("/search")
-	public String searchEvent(@RequestParam("name") String name, Model model) {
+	public String searchEvent(@RequestParam("game") String game, Model model) {
 		try {
-			if (!name.isEmpty()) {
-				List<Event> events = eventService.findByName(name);
+			if (!game.isEmpty()) {
+				List<Event> events = eventService.findByGame(game);
 				if (!events.isEmpty()) {
 					model.addAttribute("events", events);
 				} else {
@@ -100,7 +102,7 @@ public class EventController {
 	public String deleteEvent(@PathVariable(value = "id") Long id, Model model) throws Exception {
 
 		eventService.deleteById(id);
-		return "redirect:/events";
+		return "redirect:/events/";
 
 	}
 

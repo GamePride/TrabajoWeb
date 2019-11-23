@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -29,6 +30,7 @@ public class LanCenter{
 	@Column(name="name",nullable=false,length=50)
 	private String name;
 	
+	@Pattern(regexp = "[123456789][0-9]{6}",message = "El número de teléfono solo debe contener números y no puebe empezar con el número 0.")
 	@NotEmpty(message = "Debe ingresar el número del LanCenter.")
 	@Size(min = 7,max = 7,message="Número de teléfono inválido.")
 	@Column(name="phone",nullable=false)

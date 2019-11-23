@@ -1,7 +1,6 @@
 package com.gamepride.platform.service;
 
 import java.util.Collection;
-import java.util.List;
 
 import com.gamepride.platform.model.Payment;
 

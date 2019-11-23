@@ -21,7 +21,7 @@ public class LoginController {
 			RedirectAttributes flash) {
 
 		if (principal != null) {
-			return "redirect:/gamers/profile/1";
+			return "redirect:/home";
 		}
 
 		if (error != null) {

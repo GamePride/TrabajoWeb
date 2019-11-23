@@ -14,12 +14,12 @@
 					<div class="form-group row">
 						<label for="gamer" class="col-sm-2 col-form-label">Due&ntilde;o</label>
 						<div class="col-sm-5">
-								<select class="custom-select custom-select-sm"
-									th:field="*{gamerId}">
-									<option th:each="gamer : ${gamers}"
-										th:value="${gamer.id}" th:utext="${gamer.name}" />
-								</select>
-							</div>
+							<select class="custom-select custom-select-sm"
+								th:field="*{gamerId}">
+								<option th:each="gamer : ${gamers}" th:value="${gamer.id}"
+									th:utext="${gamer.name}" />
+							</select>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label for="name" class="col-sm-2 col-form-label">Nombre

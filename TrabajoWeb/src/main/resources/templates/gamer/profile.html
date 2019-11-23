@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout :: head"></head>
 
 <body>
@@ -56,7 +57,7 @@
 								</td>
 								<td></td>
 							</tr>
-							
+
 						</tbody>
 						<tbody th:if="${not #lists.isEmpty(gamer.lancenter)}">
 							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
@@ -81,15 +82,15 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="form-group row" align="center">
+					<div class="form-group row" align="center"
+						th:if="${#lists.isEmpty(gamer.lancenter)}">
 						<div class="col-sm-11">
 							<p></p>
-							<a th:href="@{/lancenters/register/}"
-									class="btn btn-primary">Registrar</a>
+							<a th:href="@{/lancenters/register/}" class="btn btn-primary">Registrar</a>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="table-responsive">
 
 					<table class="table table-striped">
@@ -99,7 +100,7 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody th:if="${#lists.isEmpty(gamer.lancenter)}"
+						<tbody th:if="${#lists.isEmpty(gamer.lancenter.events)}"
 							class="alert alert-info">
 							<tr>
 								<td
@@ -108,30 +109,52 @@
 								<td></td>
 							</tr>
 						</tbody>
-						<tbody th:if="${not #lists.isEmpty(gamer.lancenter)}">
-							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
+						<tbody th:if="${not #lists.isEmpty(gamer.lancenter.events)}">
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
 								<td>Nombre</td>
-								<td th:text="${lancenter.name}">
+								<td th:text="${event.name}">
 							</tr>
-							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
-								<td>Apellido</td>
-								<td th:text="${lancenter.address}">
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Juego</td>
+								<td th:text="${event.game}">
 							</tr>
-							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
-								<td>Alias</td>
-								<td th:text="${lancenter.district}">
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Fecha de inicio</td>
+								<td th:text="${event.startedAt}">
 							</tr>
-							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
-								<td>Tel&eacute;fono</td>
-								<td th:text="${lancenter.phone}">
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>N&uacute;mero de vacantes</td>
+								<td th:text="${event.vacancy}">
 							</tr>
-							<tr th:each="lancenter :${gamer.lancenter}" class="text-center">
-								<td>Administrador</td>
-								<td th:text="${lancenter.gamerId.name}">
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Costo de inscripci&oacute;n</td>
+								<td th:text="${event.costInscription}">
+							</tr>
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Premio</td>
+								<td th:text="${event.reward}">
+							</tr>
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Estado</td>
+								<td th:text="${event.status}">
+							</tr>
+							<tr th:each="event :${gamer.lancenter.events}" class="text-center">
+								<td>Reglas</td>
+								<td th:text="${event.bases}">
 							</tr>
 						</tbody>
 					</table>
-
+					<div class="col-lg-3">
+					<img
+						src="${event.photo}"
+						class="card-img-top">
+					</div>
+					<div class="form-group row" align="center" sec:authorize="hasRole('ROLE_ADMIN')"> 
+						<div class="col-sm-11">
+							<p></p>
+							<a th:href="@{/events/register/}" class="btn btn-primary">Crear</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

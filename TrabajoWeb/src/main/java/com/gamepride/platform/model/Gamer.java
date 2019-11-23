@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,16 +29,18 @@ public class Gamer{
 	private Long id;
 	
 	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
-	@Column(name="name",length=65)
+	@Column(name="name",length=65,nullable=false)
 	private String name;
 	
 	@NotEmpty(message = "Debe ingresar el apellido del usuario.")
-	@Column(name="last_name",length=65)
+	@Column(name="last_name",length=65, nullable=false)
 	private String lastName;
-	
+
+	@Pattern(regexp = "[9][0-9]{8}",message = "El número de teléfono solo debe contener números y debe empezar con el número 9.")
 	@Size(min = 9,max = 9,message="Número de teléfono inválido.")
-	@Column(name="phone",length=9)
+	@Column(name="phone",length=9,nullable=false)
 	private String phone;
+	
 	
 	@Size(min = 10,max = 30,message="Número de cuentas inválido.")
 	@Column(name="account_number",length=30)
