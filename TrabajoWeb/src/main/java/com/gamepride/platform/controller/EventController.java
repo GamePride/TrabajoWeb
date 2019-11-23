@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -36,6 +37,10 @@ public class EventController {
 	@Autowired
 	private ILanCenterService lancenterService;
 
+	@RequestMapping (value="/",method= RequestMethod.GET)
+	public String event(Model model) {
+		return "event/event";	
+	}
 	@GetMapping("/new")
 	public String newEvent(Model model) throws Exception {
 		model.addAttribute("event", new Event());
@@ -103,5 +108,6 @@ public class EventController {
 		return "redirect:/events";
 
 	}
+	
 
 }
