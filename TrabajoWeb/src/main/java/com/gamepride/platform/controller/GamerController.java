@@ -49,7 +49,7 @@ public class GamerController {
 			}
 		}
 		model.addAttribute("gamers",gamerService.getGamers());
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 	@GetMapping("/list")
@@ -81,7 +81,7 @@ public class GamerController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "gamer/gamerList";
+		return "/gamer/gamerList";
 	}
 	
 	@GetMapping("/profile/{id}")

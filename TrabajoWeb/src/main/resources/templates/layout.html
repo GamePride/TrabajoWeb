@@ -26,14 +26,13 @@
 			</button>
 
 			<div class="collapse navbar-collapse">
-				<a class="navbar-brand" th:href="@{/}">GamePride</a>
+				<a class="navbar-brand" th:href="@{/home}">GamePride</a>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link text-white"
-						th:href="@{/lancenters/new}">Lan Center</a></li>
+						th:action="@{/lancenters/new}">Lan Center</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
 						th:href="@{/events/new}">Torneos</a></li>
-					<li class="nav-item"><a class="nav-link text-white"
-						th:href="@{'/gamers/profile/' + ${gamer.id}}">Perfil</a></li>
+					
 				</ul>
 				<ul class="navbar-nav navbar-right">
 
@@ -45,12 +44,7 @@
 					</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<form id="profileForm"
-								th:action="@{'/gamers/profile/' + ${gamer.id}}">
-								<button class="dropdown-item"
-									onclick="document.getElementById('profileForm').submit();"
-									type="submit">Perfil</button>
-							</form>
+							
 							<form id="logoutForm" th:action="@{/logout}" method="post">
 								<button class="dropdown-item"
 									onclick="document.getElementById('logoutForm').submit();"
@@ -78,7 +72,7 @@
 
 
 	<footer th:fragment="footer" class="container">
-		<p>Derechos Reservados &copy; GamePride 2019.</p>
+		<p class="text-white">Derechos Reservados &copy; GamePride 2019.</p>
 
 
 		<script th:src="@{/js/jquery.min.js}"></script>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head"></head>
 
-<body>
+<body class="bg-secondary">
 	<header th:replace="/layout :: header"></header>
 	<div class="container">
 		<div class="card">
@@ -24,18 +24,14 @@
 					<table class="table table-striped">
 						<thead class="bg-primary text-white">
 							<tr>
-								<th scope="row">Nombre de Lan Center</th>
-								<th scope="row">Telefono</th>
-								<th scope="row">Direccion</th>
-								<th scope="row">Distrito</th>
+								<th>Nombre de Lan Center</th>
+								<th>Tel&eacute;fono</th>
+								<th>Direccion</th>
+								<th>Distrito</th>
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
 							<tr th:each="lancenter: ${lancenters}">
-=======
-							<tr th:each="lancenter: ${listLanCenters}">
->>>>>>> fe0f9ba661ea21db11ec7eeecbbee3011ff53132
 								<td th:text="${lancenter.name}"></td>
 								<td th:text="${lancenter.phone}"></td>
 								<td th:text="${lancenter.address}"></td>

@@ -12,7 +12,7 @@ public interface IEventService extends ICrudService<Event>{
 	
 	void createdEvent(Long id) throws Exception;
 	
-	List<Event> fetchEventByName(String name)throws Exception;
+	List<Event> findByName(String name)throws Exception;
 	
 	Optional<Event> fetchByEventIdWithGamers(Long id)throws Exception;
 	

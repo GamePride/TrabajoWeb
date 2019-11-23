@@ -55,8 +55,8 @@ public class EventServiceImpl implements IEventService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Event> fetchEventByName(String name) throws Exception {
-		return eventRepository.fetchEventByName(name);
+	public List<Event> findByName(String name) throws Exception {
+		return eventRepository.findByName(name);
 	}
 
 	@Transactional(readOnly = true)

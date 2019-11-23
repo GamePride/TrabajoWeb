@@ -23,8 +23,7 @@ public interface IEventRepository extends JpaRepository<Event, Long> {
 	@Query(value = "UPDATE events set status='Creado' where id =?1", nativeQuery = true)
 	void createdEvent(Long id);
 	
-	@Query("select e from Event e where e.name like %?1%")
-	List<Event> fetchEventByName(String name);
+	List<Event> findByName(String name);
 	
 	@Query("select e from Event e left join fetch e.gamers g where e.id=?1")
 	Optional<Event> fetchByEventIdWithGamers(Long id);

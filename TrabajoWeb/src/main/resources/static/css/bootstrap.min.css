@@ -203,6 +203,7 @@ figure {
 
 img {
 	vertical-align: middle;
+	margin-bottom:50px;
 	border-style: none
 }
 
@@ -1333,7 +1334,7 @@ pre code {
 }
 
 .bg-logo-image{
-	background: url("https://i.ibb.co/LSdtRRH/logo.png");
+	
 	background-position: left;
 	
 }
@@ -4396,6 +4397,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .card-title {
+	margin-top:35px;
 	margin-bottom: .75rem
 }
 
@@ -7549,6 +7551,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .p-0 {
+	margin-top: 110px;
 	padding: 0 !important
 }
 

@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,8 +31,8 @@ public class Gamer{
 	@Column(name="name",length=65)
 	private String name;
 	
-	@NotEmpty(message = "Debe ingresar el nombre del usuario.")
-	@Column(name="lastName",length=65)
+	@NotEmpty(message = "Debe ingresar el apellido del usuario.")
+	@Column(name="last_name",length=65)
 	private String lastName;
 	
 	@Size(min = 9,max = 9,message="Número de teléfono inválido.")

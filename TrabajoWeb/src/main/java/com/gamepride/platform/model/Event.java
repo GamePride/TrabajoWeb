@@ -44,7 +44,7 @@ public class Event{
 	@NotNull(message = "Debe ingresar una fecha.")
 	@Future(message = "El torneo no puede ser hoy, ingrese otra fecha.")
 	@Column(name="started_at",nullable=false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
 	private Date startedAt;
 	
 	@NotEmpty(message = "Debe ingresar el número de vacantes.")

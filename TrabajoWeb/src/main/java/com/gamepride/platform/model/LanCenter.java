@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -43,7 +42,6 @@ public class LanCenter{
 	@Column(name="district",nullable=false,length=60)
 	private String district;
 
-	@NotNull(message="Debe seleccionar un usuario")
 	@OneToOne
 	@JoinColumn(name="gamer_id",nullable=false)
 	private Gamer gamerId;
