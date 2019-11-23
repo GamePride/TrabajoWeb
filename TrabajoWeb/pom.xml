@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.gamepride.platform</groupId>
 	<artifactId>TrabajoWeb</artifactId>
-	<version>1.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>TrabajoWeb</name>
 	<description>Trabajo Final de Programación Web</description>
 
@@ -59,9 +59,8 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 
 	</dependencies>

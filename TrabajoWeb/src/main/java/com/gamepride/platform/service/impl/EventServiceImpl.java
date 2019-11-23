@@ -24,6 +24,7 @@ public class EventServiceImpl implements IEventService {
 		int result=eventRepository.countByName(e.getName());
 		if(result==0)
 		{
+			e.setStatus("Creado");
 			eventRepository.save(e);
 		}
 		return result;
@@ -55,8 +56,8 @@ public class EventServiceImpl implements IEventService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Event> findByName(String name) throws Exception {
-		return eventRepository.findByName(name);
+	public List<Event> findByGame(String game) throws Exception {
+		return eventRepository.findByGame(game);
 	}
 
 	@Transactional(readOnly = true)
